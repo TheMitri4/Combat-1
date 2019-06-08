@@ -11,7 +11,7 @@
     display: -ms-flexbox;
     justify-content: center;
     align-items: center;
-    background: url(images/задники/background.jpg) no-repeat;
+    background: url(../images/background.jpg) no-repeat;
 }
 
 .auth-form {
