@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game</title>
+    <link rel="stylesheet" href="css/main-page.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Jura&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page">
+        <div class="page-top">
+
+        </div>
+        <div class="page-main">
+           <div class="main-menu">
+               <div class="main-menu-text-block">
+                    <p class="main-menu__start-text"> Вы успешно вошли. Теперь нажмите кнопку "В бой" и победите своего соперника!</p>
+               </div>
+               <div class="main-menu-actions">
+                   <p class="main-menu__search-status hidden">Ожидаю противника</p>
+                    <button class="main-menu__button_start-battle">В бой!</button>
+               </div>
+           </div>
+        </div>
+        <div class="footer">
+            <div class="chat">
+                <div class="chat__messages"></div>
+                <form class="chat__send-block">
+                    <input class="chat__send-text" placeholder="Введите сообщение...">
+                    <div class="chat__send-button-wrapper">
+                        <button class="chat__send-button">Отправить</button>
+                    </div>    
+                </form>
+            </div>
+            <div class="online-users"></div>
+        </div>
+    </div>
+    <script src="js/helpers.js"></script>
+    <script src="js/main-page.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

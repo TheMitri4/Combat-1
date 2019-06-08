@@ -6,7 +6,7 @@ function registrationQuery(body){
 		body : body,
 		handler : function(res){
 			setUserData(res.user.id, res.user.token);
-			redirect('main.html');
+			redirect('main-page.html');
 		},
 		errorHandler : function(res){
 			// console.log(res);
@@ -26,7 +26,7 @@ function loginQuery(body){
 		body : body,
 		handler : function(res){
 			setUserData(res.user.id, res.user.token);
-			redirect('main.html');
+			redirect('main-page.html');
 		},
 		errorHandler : function(res){
 			// console.log(res);
