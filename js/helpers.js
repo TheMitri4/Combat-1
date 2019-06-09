@@ -28,7 +28,6 @@ function AJAX(configObject){
 		for(var key in configObject.body){
 			configObject.url += key + '=' + configObject.body[key] + '&';
 		}
-		console.log(configObject.url);
 		configObject.url = configObject.url.substring(0, configObject.url.length + 1);    
 	}
 
@@ -81,4 +80,6 @@ function setUserData(id, token){
 }
 
 
-
+function redirect(url){
+	window.location = url;
+}

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game</title>
+    <link rel="stylesheet" href="css/fight-page.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Jura&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="page">
+        <div class="page-top">
+            <div class="info-player page-top_item">
+                <div class="info-player__char-icon"></div>
+                <div class="info-player-side-block">
+                    <div class="info-player__char-nickname"></div>
+                    <div class="info-player__char-hp"></div>
+                </div>
+            </div>
+            <div class="turn-switcher page-top_item">
+                <div class="turn-switcher__timer">30</div>
+                <button class="turn-switcher__button">Конец хода</button>
+            </div>
+            <div class="info-enemy page-top_item">
+                <div class="info-enemy-side-block">
+                    <div class="info-enemy__char-nickname"></div>
+                    <div class="info-enemy__char-hp"></div>
+                </div>
+                <div class="info-enemy__char-icon"></div>
+            </div>
+        </div>
+        <div class="page-main">
+            <div class="player-block">
+                <div class="char-player">
+                    <div class="char-player__head body-part"></div>
+                    <div class="char-player__body body-part"></div>
+                    <div class="char-player__belt body-part"></div>
+                    <div class="char-player__legs body-part"></div>
+                </div>
+            </div>
+            <div class="battle-info">
+                <div class="battle-info-actions">
+                    <div class="battle-info-defence-attack">
+                        <div class="battle-info-defence">
+                            <p class="battle-info-defence__title">Защита</p>
+                            <input type="checkbox" name="defence" id="head_def" value="head" hidden><label for="head_def">Голова</label>
+                            <input type="checkbox" name="defence" id="body_def" value="body" hidden><label for="body_def">Торс</label>
+                            <input type="checkbox" name="defence" id="belt_def" value="belt" hidden><label for="belt_def">Пах</label>
+                            <input type="checkbox" name="defence" id="legs_def" value="legs" hidden><label for="legs_def">Ноги</label>
+                        </div>
+                        <div class="battle-info-attack">
+                            <p class="battle-info-attack__title">Атака</p>
+                            <input type="radio" name="attack" id="head_atc" value="head" hidden><label for="head_atc">Голова</label>
+                            <input type="radio" name="attack" id="body_atc" value="body" hidden><label for="body_atc">Торс</label>
+                            <input type="radio" name="attack" id="belt_atc" value="belt" hidden><label for="belt_atc">Пах</label>
+                            <input type="radio" name="attack" id="legs_atc" value="legs" hidden><label for="legs_atc">Ноги</label>
+                        </div>
+                        <div class="battle-info__blocked hidden">
+                            <h1 class="battle-info__blocked-title">Ожидание противника</h1>
+                        </div>
+                    </div>
+                    <div class="battle-info__descr"></div>
+                </div>
+                <div class="battle-info__battle-log battle-log">
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    <p class="battle-log__item">
+                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
+                        <span class="battle-log__enemy-name">test</span> уклоняется
+                    </p>
+                    
+                </div>
+            </div>
+            <div class="enemy-block">
+                <div class="char-enemy">
+                    <div class="char-enemy__head body-part"></div>
+                    <div class="char-enemy__body body-part"></div>
+                    <div class="char-enemy__belt body-part"></div>
+                    <div class="char-enemy__legs body-part"></div>
+                </div>
+            </div>
+        </div>
+        <div class="page-bot">
+            <div class="footer">
+                <div class="chat">
+                    <div class="chat__messages"></div>
+                    <form class="chat__send-block">
+                        <input class="chat__send-text" placeholder="Введите сообщение...">
+                        <div class="chat__send-button-wrapper">
+                            <button class="chat__send-button">Отправить</button>
+                        </div>    
+                    </form>
+                </div>
+                <div class="online-users"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/helpers.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/fight-page.js"></script>
+</body>
+</html>

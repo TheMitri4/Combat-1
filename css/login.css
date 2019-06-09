@@ -12,6 +12,7 @@
     justify-content: center;
     align-items: center;
     background: url(../images/background.jpg) no-repeat;
+    overflow: hidden;
 }
 
 .auth-form {
@@ -96,16 +97,6 @@
     font-size: 48px;
 }
 
-.wrong {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    background: black;
-    opacity: 0.9;
-    height: 100%;
-    width: 100%;
-}
-
 .wrong__window {
     position: absolute;
     bottom: 0px;
@@ -119,6 +110,8 @@
     background: rgba(0, 0, 0, 0.6);
     flex-direction: column;
     justify-content: center;
+    transform: translateY(200px);
+    transition: 0.5s;
 }
 
 .wrong__window__btn {
@@ -140,8 +133,4 @@
 .wrong__window__text {
     padding: 10px;
     text-align: center;
-}
-
-.hidden {
-    display: none;
 }

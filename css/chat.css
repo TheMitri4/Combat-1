@@ -1,12 +1,10 @@
 .footer{
     display: flex;
     width: 100%;
-    margin-top: 10px;
     box-sizing: border-box;
-    /* border: 7px solid black; */
     border-radius: 10px;
     max-height: 400px;
-    height: 400px;
+    height: 100%;
     background-color: rgba(0,0,0,0.7);
 }
 
