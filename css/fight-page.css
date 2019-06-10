@@ -159,29 +159,17 @@ body {
     opacity: 0.5;
     flex-basis: 25%;
 }
-.char-player__head_active {
-    background-color: blue;
-}
 .char-player__body {
     opacity: 0.5;
     flex-basis: 25%;
-}
-.char-player__body_active {
-    background-color: blue;
 }
 .char-player__belt {
     opacity: 0.5;
     flex-basis: 25%;
 }
-.char-player__belt_active {
-    background-color: blue;
-}
 .char-player__legs {
     opacity: 0.5;
     flex-basis: 25%;
-}
-.char-player__legs_active {
-    background-color: blue;
 }
 .body-part_active{
     background-color: blue;
@@ -288,31 +276,18 @@ body {
     opacity: 0.5;
     flex-basis: 25%;
 }
-.char-enemy__head_active {
-    background-color: red;
-}
 .char-enemy__body {
     opacity: 0.5;
     flex-basis: 25%;
-}
-.char-enemy__body_active {
-    background-color: red;
 }
 .char-enemy__belt {
     opacity: 0.5;
     flex-basis: 25%;
 }
-.char-enemy__belt_active {
-    background-color: red;
-}
 .char-enemy__legs {
     opacity: 0.5;
     flex-basis: 25%;
 }
-.char-enemy__legs_active {
-    background-color: red;
-}
-
 .enemy-body-part_active{
     background-color: red;
 }
