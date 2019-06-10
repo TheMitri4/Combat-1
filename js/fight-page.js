@@ -201,7 +201,7 @@ function createLogItem(player, enemy){
 	let enemySpan = document.createElement('span');
 	enemySpan.classList.add('battle-log__enemy-name');
 	enemySpan.innerText = enemy;
-	logItem.innerHTML = ``
+	logItem.innerHTML = ``;
 }
 
 
