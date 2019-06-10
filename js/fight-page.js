@@ -84,6 +84,8 @@ const turnWaitWrapper = document.querySelector('.battle-info__blocked');
 const playerHealthBar = document.querySelector('.info-player__char-hp');
 const enemyHealthBar = document.querySelector('.info-enemy__char-hp');
 
+const battleLog = document.querySelector('.battle-log');
+
 makeTurnButton.addEventListener('click', function(){
     const defAreas = Array.from(checkboxDef).filter(item => {
         return item.checked;
@@ -153,10 +155,17 @@ function turnHandler(res){
 	}else{
 		makeTurnButton.disabled = false;
 		turnWaitWrapper.classList.add('hidden');
+
 		const playerHealth = Math.round((res.combat.you.health / 30) * 100);
 		const enemyHealth = Math.round((res.combat.enemy.health / 30) * 100);
 		playerHealthBar.style.width = `${playerHealth}%`;
 		enemyHealthBar.style.width = `${enemyHealth}%`;
+
+		if(res.combat.results.length != 0){
+			let turnResults = res.combat.results[res.combat.results.length - 1];
+			turnResults.forEach(item => addLogItem(createLogItem(item), battleLog));
+		}
+		
 		console.log('Ход завершен');
 	}
 }
@@ -202,17 +211,37 @@ function setupFightPageHandler(res){
 			getFightDetailsQuery(res.combat.id, turnHandler);
 		},1000);
 	}
+
+	if(combat.results.length != 0){
+		combat.results.forEach(item => {
+			item.forEach(item => addLogItem(createLogItem(item), battleLog));
+		})
+	}
 }
 
-function createLogItem(player, enemy){
+function createLogItem(logData){
+	const hits = {
+		head: 'голову',
+		body: 'торс',
+		belt: 'пах',
+		legs: 'ноги'
+	}
+
 	let logItem = document.createElement('p');
-	let playerSpan = document.createElement('span');
-	playerSpan.classList.add('battle-log__player-name');
-	playerSpan.innerText = player;
-	let enemySpan = document.createElement('span');
-	enemySpan.classList.add('battle-log__enemy-name');
-	enemySpan.innerText = enemy;
-	logItem.innerHTML = ``;
+	logItem.classList.add('battle-log__item');
+	
+	if(logData.blocked){
+		logItem.innerHTML = `<span>${logData.origin.username}</span> пытается нанести удар в ${hits[logData.hit]}, но <span>${logData.target.username}</span> успешно блокирует удар`;
+	}else{
+		logItem.innerHTML = `<span>${logData.target.username}</span> получает удар в ${hits[logData.hit]}`;
+	}
+
+	return logItem;
+}
+
+function addLogItem(item, container){
+	container.appendChild(item);
+	container.scrollTop = container.scrollHeight;
 }
 
 

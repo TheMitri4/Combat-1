@@ -50,7 +50,8 @@ body {
 }
 .page-bot {
     height: 30%;
-    margin-top: 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
 }
 /* -----------------------------PAGE-TOP----------------------------------- */
 /* ------------------------------PLAYER------------------------------------ */
@@ -260,7 +261,8 @@ body {
 }
 .battle-log{
     padding: 5px 15px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     flex-grow: 0;
 }
 .battle-log__item{

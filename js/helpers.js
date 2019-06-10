@@ -1,5 +1,5 @@
 var config = {
-	baseUrlForAJAXQuery : 'http://localhost:3333/'
+	baseUrlForAJAXQuery : 'http://192.168.0.102:3333/'
 }
 var POST_HEADER = {'Content-Type': 'application/x-www-form-urlencoded'};
 
