@@ -1,26 +1,29 @@
-const checkboxDef = document.querySelector('.battle-info-defence').querySelectorAll("input[type='checkbox']"),
-checkboxAtc = document.querySelector('.battle-info-attack').querySelectorAll("input[type='radio']"),
+const  defBox = document.querySelector('.battle-info-defence'),
+atcBox = document.querySelector('.battle-info-attack'),
+checkboxDef = defBox.querySelectorAll("input"),
+labelDef = defBox.querySelectorAll("label"),
+checkboxAtc = atcBox.querySelectorAll("input"),
+labelAtc = atcBox.querySelectorAll("label"),
 playerBody = document.querySelector('.char-player').querySelectorAll('.body-part'),
 enemyBody = document.querySelector('.char-enemy').querySelectorAll('.body-part');
 
 let checkboxDefListener = 0, // НУЖНО ОБНУЛЯТЬ КАЖДЫЙ ХОД
-lastAttackIndex;
-
+lastAttackIndex = null;
 
 // ДЕЙСТВИЯ ЧЕКБОКСОВ В ЦЕНТРЕ (ЗАЩИТА)
-checkboxDef.forEach((e, i) => {
+labelDef.forEach((e, i) => {
 e.addEventListener('click', (event) => {
-    if (!e.checked) {
-        checkboxDefListener--;
-        playerBody[i].classList.toggle('body-part_active');
-    } else if (checkboxDefListener < 2 ) {
-        checkboxDefListener++;
-        playerBody[i].classList.toggle('body-part_active');
-    } else {
-        e.checked = false;
-        alert('Вы можете защищать только 2 области!');
-    }
-})
+	if (checkboxDef[i].checked) {
+		playerBody[i].classList.toggle('body-part_active');
+		checkboxDefListener--;
+	} else if (checkboxDefListener < 2 ) {
+		playerBody[i].classList.toggle('body-part_active');
+		checkboxDefListener++;
+	} else {
+		event.preventDefault();
+		alert('Вы можете защищать только 2 области!');
+	}
+});
 });
 
 // ДЕЙСТВИЯ НА ПЕРСОНАЖА ИГРОКА (ЗАЩИТА)
@@ -37,31 +40,31 @@ e.addEventListener('click', () => {
     } else {
         alert('Вы можете защищать только 2 области!');
     }
-})
-})
+});
+});
 
 // ДЕЙСТВИЯ НА РАДИО БАТТОНАХ (АТАКА)
-checkboxAtc.forEach((e, i) => {
-e.addEventListener('click', function (event) {
-    if (Number.isInteger(lastAttackIndex)) {
+labelAtc.forEach((e, i) => {
+e.addEventListener('click', () => {
+    if (lastAttackIndex !== null) {
         enemyBody[lastAttackIndex].classList.toggle('enemy-body-part_active');
     } 
     lastAttackIndex = i;
     enemyBody[i].classList.toggle('enemy-body-part_active');
-})
-})
+});
+});
 
 // ДЕЙСТВИЯ НА ПЕРСОНАЖА ПРОТИВНИКА (АТАКА)
 enemyBody.forEach((e, i) => {
 e.addEventListener('click', () => {
-    if (Number.isInteger(lastAttackIndex)) {
+    if (lastAttackIndex !== null) {
         enemyBody[lastAttackIndex].classList.toggle('enemy-body-part_active');
     } 
     e.classList.toggle('enemy-body-part_active');
     checkboxAtc[i].checked = true;
     lastAttackIndex = i;
-})
-})
+});
+});
 
 // Логика боя
 
@@ -72,6 +75,10 @@ const playerHealthBar = document.querySelector('.info-player__char-hp');
 const enemyHealthBar = document.querySelector('.info-enemy__char-hp');
 
 makeTurnButton.addEventListener('click', function(){
+	// ПЕРЕМЕННЫЕ ДЛЯ ВЫБОРА АТАКИ
+	checkboxDefListener = 0; 
+	lastAttackIndex = null;
+
     const defAreas = Array.from(checkboxDef).filter(item => {
         return item.checked;
     });
@@ -194,7 +201,7 @@ function createLogItem(player, enemy){
 	let enemySpan = document.createElement('span');
 	enemySpan.classList.add('battle-log__enemy-name');
 	enemySpan.innerText = enemy;
-	logItem.innerHTML = `${}`
+	logItem.innerHTML = ``;
 }
 
 
