@@ -7,10 +7,10 @@
     <title>Game</title>
     <link rel="stylesheet" href="css/fight-page.css">
     <link rel="stylesheet" href="css/chat.css">
-    <link href="https://fonts.googleapis.com/css?family=Fjalla+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Jura&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="scene">
+    <div data-speed='100' class="layer"></div>
     <div class="page">
         <div class="page-top">
             <div class="info-player page-top_item">
@@ -43,26 +43,23 @@
             </div>
             <div class="battle-info">
                 <div class="battle-info-actions">
-                    <div class="battle-info-defence-attack">
-                        <div class="battle-info-defence">
-                            <p class="battle-info-defence__title">Защита</p>
-                            <input type="checkbox" name="defence" id="head_def" value="head" hidden><label for="head_def">Голова</label>
-                            <input type="checkbox" name="defence" id="body_def" value="body" hidden><label for="body_def">Торс</label>
-                            <input type="checkbox" name="defence" id="belt_def" value="belt" hidden><label for="belt_def">Пах</label>
-                            <input type="checkbox" name="defence" id="legs_def" value="legs" hidden><label for="legs_def">Ноги</label>
-                        </div>
-                        <div class="battle-info-attack">
-                            <p class="battle-info-attack__title">Атака</p>
-                            <input type="radio" name="attack" id="head_atc" value="head" hidden><label for="head_atc">Голова</label>
-                            <input type="radio" name="attack" id="body_atc" value="body" hidden><label for="body_atc">Торс</label>
-                            <input type="radio" name="attack" id="belt_atc" value="belt" hidden><label for="belt_atc">Пах</label>
-                            <input type="radio" name="attack" id="legs_atc" value="legs" hidden><label for="legs_atc">Ноги</label>
-                        </div>
-                        <div class="battle-info__blocked hidden">
-                            <h1 class="battle-info__blocked-title">Ожидание противника</h1>
-                        </div>
+                    <div class="battle-info-defence">
+                        <p class="battle-info-defence__title">Защита</p>
+                        <input type="checkbox" name="defence" id="head_def" value="head" hidden><label for="head_def">Голова</label>
+                        <input type="checkbox" name="defence" id="body_def" value="body" hidden><label for="body_def">Торс</label>
+                        <input type="checkbox" name="defence" id="belt_def" value="belt" hidden><label for="belt_def">Пах</label>
+                        <input type="checkbox" name="defence" id="legs_def" value="legs" hidden><label for="legs_def">Ноги</label>
                     </div>
-                    <div class="battle-info__descr"></div>
+                    <div class="battle-info-attack">
+                        <p class="battle-info-attack__title">Атака</p>
+                        <input type="radio" name="attack" id="head_atc" value="head" hidden><label for="head_atc">Голова</label>
+                        <input type="radio" name="attack" id="body_atc" value="body" hidden><label for="body_atc">Торс</label>
+                        <input type="radio" name="attack" id="belt_atc" value="belt" hidden><label for="belt_atc">Пах</label>
+                        <input type="radio" name="attack" id="legs_atc" value="legs" hidden><label for="legs_atc">Ноги</label>
+                    </div>
+                    <div class="battle-info__blocked hidden">
+                        <h1 class="battle-info__blocked-title">Ожидание противника</h1>
+                    </div>
                 </div>
                 <div class="battle-info__battle-log battle-log">
                     <p class="battle-log__item">

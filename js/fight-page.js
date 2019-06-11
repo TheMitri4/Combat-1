@@ -10,6 +10,16 @@ enemyBody = document.querySelector('.char-enemy').querySelectorAll('.body-part')
 let checkboxDefListener = 0, // НУЖНО ОБНУЛЯТЬ КАЖДЫЙ ХОД
 lastAttackIndex = null;
 
+// ПАРАЛЛАКС
+function parallax(event) {
+	const layers =  document.querySelectorAll('.layer');
+	layers.forEach(layer => {
+		let speed = layer.getAttribute('data-speed');
+		layer.style.transform = `translateX(${-event.clientX*speed/1000}px)`;
+	});
+}
+document.addEventListener('mousemove', parallax);
+
 // ДЕЙСТВИЯ ЧЕКБОКСОВ В ЦЕНТРЕ (ЗАЩИТА)
 labelDef.forEach((e, i) => {
 e.addEventListener('click', (event) => {
@@ -75,10 +85,6 @@ const playerHealthBar = document.querySelector('.info-player__char-hp');
 const enemyHealthBar = document.querySelector('.info-enemy__char-hp');
 
 makeTurnButton.addEventListener('click', function(){
-	// ПЕРЕМЕННЫЕ ДЛЯ ВЫБОРА АТАКИ
-	checkboxDefListener = 0; 
-	lastAttackIndex = null;
-
     const defAreas = Array.from(checkboxDef).filter(item => {
         return item.checked;
     });
@@ -95,14 +101,19 @@ makeTurnButton.addEventListener('click', function(){
         hit: hit,
         blocks: blocks
     };
-    
-    // checkboxDef.forEach(item => item.checked = false);
-    // checkboxAtc.forEach(item => item.checked = false);
-    // playerBody.forEach(item => item.classList.remove('body-part_active'));
-    // enemyBody.forEach(item => item.classList.remove('enemy-body-part_active'));
+	
+	this.disabled = true;
+	sendTurn(JSON.stringify(turn));
 
-    this.disabled = true;
-    sendTurn(JSON.stringify(turn));
+	// ОБНУЛЕНИЕ ЭЛЕМЕНТОВ ВЫОРА
+    checkboxDef.forEach(item => item.checked = false);
+    checkboxAtc.forEach(item => item.checked = false);
+    playerBody.forEach(item => item.classList.remove('body-part_active'));
+    enemyBody.forEach(item => item.classList.remove('enemy-body-part_active'));
+
+	// ОБНУЛЕНИЕ ПЕРЕМЕННЫХ ДЛЯ ВЫБОРА АТАКИ
+	checkboxDefListener = 0; 
+	lastAttackIndex = null;
 })
 
 function sendTurn(turn){
