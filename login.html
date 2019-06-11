@@ -6,21 +6,23 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Login page</title>
 		<link rel="stylesheet" href="css/login.css">
+		<link href="https://fonts.googleapis.com/css?family=Jura&display=swap" rel="stylesheet">
 	</head>
-
-	<body class="auth-body">
+	<body class="scene"> 
+		<div data-speed='100' class="layer"></div>
 		<div class="wrapper">
 			<div class="game-name">FIGHT CLUB</div>
-				<form action="" method="post" class="auth-form">
-					<input type="text" name="login" class="auth-body__input-login auth-body__input" placeholder="Логин">
-					<input type="password" name="password" class="auth-body__input-password auth-body__input" placeholder="Пароль">
-					<div class="auth-body__wrapper-for-buttons">
-						<button class="auth-body__btn-login">Войти</button>
-						<button class="auth-body__btn-registration">Регистрация</button>
-				</form>
-			</div>
+			<form action="" method="post" class="auth-form">
+				<input type="text" name="login" class="auth-body__input-login auth-body__input" placeholder="Логин">
+				<input type="password" name="password" class="auth-body__input-password auth-body__input" placeholder="Пароль">
+				<div class="auth-body__wrapper-for-buttons">
+					<button class="auth-body__btn-login">Войти</button>
+					<button class="auth-body__btn-registration">Регистрация</button>
+				</div>
+			</form>
 		</div>
 		<div class="wrong__window">
+			<div class="wrong__window__icon"></div>
 			<div class="wrong__window__text">Не правильно введен логин или пароль</div>
 		</div>
 		<script src="js/helpers.js"></script>

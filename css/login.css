@@ -1,9 +1,12 @@
-.auth-body {
-    font-family: 'Fjalla One', sans-serif;
+.scene {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    min-height: 100vh;
+    font-family: 'Jura', sans-serif;
     color: blanchedalmond;
-    position: absolute;
-    width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
     display: flex;
@@ -11,10 +14,15 @@
     display: -ms-flexbox;
     justify-content: center;
     align-items: center;
-    background: url(../images/background.jpg) no-repeat;
-    overflow: hidden;
 }
-
+.layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(../images/mountains.jpg) center no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -24,25 +32,21 @@
     width: 400px;
     height: 200px;
 }
-
 .auth-body__input {
     margin: 10px;
     height: 30px;
     background: wheat;
     opacity: 1;
 }
-
 .auth-body__input:focus {
     outline: none;
 }
-
 .auth-body__wrapper-for-buttons {
     display: flex;
     display: -webkit-flex;
     display: -ms-flexbox;
     justify-content: center;
 }
-
 .auth-body__btn-registration {
     margin: 10px;
     height: 30px;
@@ -52,15 +56,12 @@
     border: 1px solid wheat;
     border-radius: 5px;
 }
-
 .auth-body__btn-registration:focus {
     outline: none;
 }
-
 .auth-body__btn-registration:hover {
     opacity: 0.7;
 }
-
 .auth-body__btn-login {
     margin: 10px;
     height: 30px;
@@ -70,15 +71,12 @@
     border: 1px solid wheat;
     border-radius: 5px;
 }
-
 .auth-body__btn-login:focus {
     outline: none;
 }
-
 .auth-body__btn-login:hover {
     opacity: 0.7;
 }
-
 .wrapper {
     flex-direction: column;
     display: flex;
@@ -90,7 +88,6 @@
     border-radius: 15px;
     border: 2px solid wheat;
 }
-
 .game-name {
     display: flex;
     margin: auto;
@@ -98,7 +95,7 @@
 }
 
 .wrong__window {
-    position: absolute;
+    position: absolute; 
     bottom: 0px;
     right: 0px;
     margin: 10px;
@@ -106,30 +103,21 @@
     height: 150px;
     display: flex;
     border-radius: 15px;
-    border: 2px solid wheat;
+    border: 1px solid red;
     background: rgba(0, 0, 0, 0.6);
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     transform: translateY(200px);
     transition: 0.5s;
 }
-
-.wrong__window__btn {
-    display: flex;
-    align-self: center;
-    margin: 10px;
-    height: 30px;
-    width: 50%;
-    background: black;
-    color: wheat;
-    border: 1px solid wheat;
-    border-radius: 5px;
+.wrong__window__icon {
+    width: 50px;
+    height: 50px;
+    background: url(/images/red_cross.png) no-repeat;
+    background-size: cover;
+    background-position: center;
 }
-
-.wrong__window__btn:focus {
-    outline: none;
-}
-
 .wrong__window__text {
     padding: 10px;
     text-align: center;
