@@ -147,7 +147,6 @@ function turnHandler(res){
 		redirect('main-page.html');
 	}
 	if(!res.combat.turn_status){
-		console.log('Тест');
 		turnWaitWrapper.classList.remove('hidden');
 		setTimeout(() => {
 			getFightDetailsQuery(res.combat.id, turnHandler);
@@ -165,8 +164,6 @@ function turnHandler(res){
 			let turnResults = res.combat.results[res.combat.results.length - 1];
 			turnResults.forEach(item => addLogItem(createLogItem(item), battleLog));
 		}
-		
-		console.log('Ход завершен');
 	}
 }
 
@@ -227,13 +224,26 @@ function createLogItem(logData){
 		legs: 'ноги'
 	}
 
+	const blockedPhrases = [
+		`<span>${logData.origin.username}</span> пытается нанести удар в ${hits[logData.hit]}, но <span>${logData.target.username}</span> успешно блокирует удар`,
+		`<span>${logData.origin.username}</span> промахивается , и <span>${logData.target.username}</span> остается цел`,
+		`<span>${logData.target.username}</span> отражает удар в ${hits[logData.hit]}`,
+		'фраза 4',
+		'фраза 5'
+	]
+
+	const missedHitPhrases = [
+		`<span>${logData.target.username}</span> получает удар в ${hits[logData.hit]}`,
+		`<span>${logData.origin.username}</span> наносит удар в ${hits[logData.hit]} <span>${logData.target.username}</span>`
+	]
+
 	let logItem = document.createElement('p');
 	logItem.classList.add('battle-log__item');
 	
 	if(logData.blocked){
-		logItem.innerHTML = `<span>${logData.origin.username}</span> пытается нанести удар в ${hits[logData.hit]}, но <span>${logData.target.username}</span> успешно блокирует удар`;
+		logItem.innerHTML = blockedPhrases[Math.round(Math.random() * (blockedPhrases.length - 1) + 0)];
 	}else{
-		logItem.innerHTML = `<span>${logData.target.username}</span> получает удар в ${hits[logData.hit]}`;
+		logItem.innerHTML = missedHitPhrases[Math.round(Math.random() * (missedHitPhrases.length - 1) + 0)];
 	}
 
 	return logItem;
@@ -244,5 +254,19 @@ function addLogItem(item, container){
 	container.scrollTop = container.scrollHeight;
 }
 
+function setRandomBackground(container){
+	const backgrounds = [
+		'cave.jpg',
+		'mountains.jpg',
+		'fire.jpg',
+		'wild.jpg'
+	]
+	container.style.backgroundImage = `url(../images/${backgrounds[Math.round(Math.random() * (backgrounds.length - 1) + 0)]})`;
+}
+
 
 getFightDetailsQuery(localStorage.getItem('combat_id'), setupFightPageHandler);
+
+const pageBackgroundContainer = document.querySelector('.layer');
+
+setRandomBackground(pageBackgroundContainer);
