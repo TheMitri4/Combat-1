@@ -80,6 +80,7 @@ e.addEventListener('click', () => {
 
 const makeTurnButton = document.querySelector('.turn-switcher__button');
 const turnWaitWrapper = document.querySelector('.battle-info__blocked');
+const fightResultsBlock = document.querySelector('.fight-results__wrapper');
 
 const playerHealthBar = document.querySelector('.info-player__char-hp');
 const enemyHealthBar = document.querySelector('.info-enemy__char-hp');
@@ -137,14 +138,20 @@ function sendTurn(turn){
 }
 
 function turnHandler(res){
-	console.log(res);
 	if(res.combat.status === 'finished'){
 		if(res.combat.you.health <= 0){
-			alert('Вы проиграли');
+			fightResultsBlock.querySelector('.fight-results__title').innerText = 'Поражение';
+			fightResultsBlock.classList.remove('hidden');
+			fightResultsBlock.querySelector('.fight-results__return-button').addEventListener('click', () => {
+				redirect('main-page')
+			});
 		}else{
-			alert('Вы выиграли');
+			fightResultsBlock.querySelector('.fight-results__title').innerText = 'Победа';
+			fightResultsBlock.classList.remove('hidden');
+			fightResultsBlock.querySelector('.fight-results__return-button').addEventListener('click', () => {
+				redirect('main-page')
+			});
 		}
-		redirect('main-page.html');
 	}
 	if(!res.combat.turn_status){
 		turnWaitWrapper.classList.remove('hidden');
@@ -187,7 +194,7 @@ function setupFightPageHandler(res){
 	const combat = res.combat;
 
 	if(combat.status !== 'progress'){
-		redirect('main-page.html');
+		redirect('main-page');
 	}
 
 	const playersNick = document.querySelector('.info-player__char-nickname');
@@ -227,9 +234,7 @@ function createLogItem(logData){
 	const blockedPhrases = [
 		`<span>${logData.origin.username}</span> пытается нанести удар в ${hits[logData.hit]}, но <span>${logData.target.username}</span> успешно блокирует удар`,
 		`<span>${logData.origin.username}</span> промахивается , и <span>${logData.target.username}</span> остается цел`,
-		`<span>${logData.target.username}</span> отражает удар в ${hits[logData.hit]}`,
-		'фраза 4',
-		'фраза 5'
+		`<span>${logData.target.username}</span> отражает удар в ${hits[logData.hit]}`
 	]
 
 	const missedHitPhrases = [
@@ -266,7 +271,7 @@ function setRandomBackground(container){
 		'western.jpg',
 		'nightForest.png'
 	]
-	container.style.backgroundImage = `url(../images/${backgrounds[Math.round(Math.random() * (backgrounds.length - 1) + 0)]})`;
+	container.style.backgroundImage = `url(images/${backgrounds[Math.round(Math.random() * (backgrounds.length - 1) + 0)]})`;
 }
 
 
