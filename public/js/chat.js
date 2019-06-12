@@ -10,7 +10,9 @@ class GetMessagesObject{
 	method = 'GET';
 	url = 'chat';
 	handler = function(result){
-		addMessages(result.chat, chatMessagesContainer);
+		if(result.chat.length > 0){
+			addMessages(result.chat, chatMessagesContainer);
+		}
 	}
 	errorHandler = function(result){
 		console.log(result.responseText);
@@ -50,6 +52,7 @@ function addMessages(arr, container){
 	});
 
 	container.appendChild(wrapper);
+	container.scrollTop = container.scrollHeight;
 }
 
 function getMessagesQuery(){

@@ -229,18 +229,18 @@ function createLogItem(logData){
 		body: 'торс',
 		belt: 'пах',
 		legs: 'ноги'
-	}
+	};
 
 	const blockedPhrases = [
 		`<span>${logData.origin.username}</span> пытается нанести удар в ${hits[logData.hit]}, но <span>${logData.target.username}</span> успешно блокирует удар`,
 		`<span>${logData.origin.username}</span> промахивается , и <span>${logData.target.username}</span> остается цел`,
 		`<span>${logData.target.username}</span> отражает удар в ${hits[logData.hit]}`
-	]
+	];
 
 	const missedHitPhrases = [
 		`<span>${logData.target.username}</span> получает удар в ${hits[logData.hit]}`,
 		`<span>${logData.origin.username}</span> наносит удар в ${hits[logData.hit]} <span>${logData.target.username}</span>`
-	]
+	];
 
 	let logItem = document.createElement('p');
 	logItem.classList.add('battle-log__item');
