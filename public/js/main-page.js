@@ -23,7 +23,7 @@ function findFightQuery(){
 				}, 1000);
 			}
 			if(res.combat.status === 'progress'){
-				redirect('fight-page.html');
+				redirect('fight-page');
 			}
 		},
 		errorHandler : function(res){
@@ -42,7 +42,7 @@ function getFightStatusQuery(combatId){
         },
 		handler : function(res){
 			if(res.combat.status === 'progress'){
-				redirect('fight-page.html');
+				redirect('fight-page');
 			}
 		},
 		errorHandler : function(res){
@@ -73,7 +73,7 @@ function getInfoQuery(){
 				}, 1000);
 			}
 			if(lastCombat.status === 'progress'){
-				redirect('fight-page.html');
+				redirect('fight-page');
 			}
 		},
 		errorHandler : function(res){

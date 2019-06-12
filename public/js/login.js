@@ -14,7 +14,7 @@ onDOMReady(function(){
 			body : body,
 			handler : function(res){
 				setUserData(res.user.id, res.user.token);
-				redirect('main-page.html');
+				redirect('main-page');
 			},
 			errorHandler : function(res){
 				if(res.status === 409){
@@ -35,7 +35,7 @@ onDOMReady(function(){
 			body : body,
 			handler : function(res){
 				setUserData(res.user.id, res.user.token);
-				redirect('main-page.html');
+				redirect('main-page');
 			},
 			errorHandler : function(res){
 				if(res.status === 403){
