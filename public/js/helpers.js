@@ -1,5 +1,5 @@
 var config = {
-	baseUrlForAJAXQuery : 'http://192.168.0.102:3333/'
+	baseUrlForAJAXQuery : 'https://combats-api-ya.herokuapp.com/'
 }
 var POST_HEADER = {'Content-Type': 'application/x-www-form-urlencoded'};
 
