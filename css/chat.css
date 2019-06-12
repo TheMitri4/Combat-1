@@ -55,7 +55,7 @@
 }
 
 .chat__send-text{
-    width: 80%;
+    width: 90%;
     height: 100%;
     resize: none;
     box-sizing: border-box;
@@ -68,6 +68,10 @@
     color: #fff;
 }
 
+.chat__send-text:focus{
+    outline: none;
+}
+
 .chat__send-button-wrapper{
     display: flex;
     width: 20%;
@@ -77,12 +81,13 @@
 }
 
 .chat__send-button{
-    background-color: transparent;
     border: none;
     text-transform: uppercase;
     cursor: pointer;
     /* padding: 20px 40px; */
     color: #fff;
+    width: 10%;
+    background-color: rgba(65, 64, 64, 0.849);
 }
 
 .online-users{
