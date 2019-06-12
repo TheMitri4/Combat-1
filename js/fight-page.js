@@ -259,7 +259,12 @@ function setRandomBackground(container){
 		'cave.jpg',
 		'mountains.jpg',
 		'fire.jpg',
-		'wild.jpg'
+		'wild.jpg',
+		'darkMountains.jpg',
+		'dayMountains.jpg',
+		'dayMountains2.jpg',
+		'western.jpg',
+		'nightForest.png'
 	]
 	container.style.backgroundImage = `url(../images/${backgrounds[Math.round(Math.random() * (backgrounds.length - 1) + 0)]})`;
 }
