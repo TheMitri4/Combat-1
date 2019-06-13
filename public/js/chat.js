@@ -14,8 +14,12 @@ class GetMessagesObject{
 			addMessages(result.chat, chatMessagesContainer);
 		}
 	}
-	errorHandler = function(result){
-		console.log(result.responseText);
+	errorHandler = function(res){
+		if(res.status === 403){
+			wrongTokenHadler();
+		}else{
+			console.log(res.responseText);
+		}
 	}
 }
 
@@ -79,8 +83,12 @@ class SendMessageObject{
 	handler = function(result){
 		sendTextArea.value = '';
 	}
-	errorHandler = function(result){
-		console.log(result.responseText);
+	errorHandler = function(res){
+		if(res.status === 403){
+			wrongTokenHadler();
+		}else{
+			console.log(res.responseText);
+		}
 	}
 }
 
@@ -118,6 +126,13 @@ let getOnlineUsersObject = {
 	url: 'online',
 	handler: function(result){
 		showOnlineUsers(result.users, onlineUsersList);
+	},
+	errorHandler: function(res){
+		if(res.status === 403){
+			wrongTokenHadler();
+		}else{
+			console.log(res.responseText);
+		}
 	}
 }
 

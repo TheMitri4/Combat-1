@@ -1,6 +1,6 @@
 var config = {
-	baseUrlForAJAXQuery : 'https://combats-team4-api.herokuapp.com/'
-	// baseUrlForAJAXQuery : 'http://localhost:3333/'
+	// baseUrlForAJAXQuery : 'https://combats-team4-api.herokuapp.com/'
+	baseUrlForAJAXQuery : 'http://localhost:3333/'
 }
 var POST_HEADER = {'Content-Type': 'application/x-www-form-urlencoded'};
 
@@ -83,4 +83,8 @@ function setUserData(id, token){
 
 function redirect(url){
 	window.location = url;
+}
+
+function wrongTokenHadler(){
+	redirect('/');
 }

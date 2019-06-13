@@ -27,7 +27,11 @@ function findFightQuery(){
 			}
 		},
 		errorHandler : function(res){
-			console.log(res);
+			if(res.status === 403){
+				wrongTokenHadler();
+			}else{
+				console.log(res.responseText);
+			}
 		}
 	})();
 }
@@ -46,7 +50,11 @@ function getFightStatusQuery(combatId){
 			}
 		},
 		errorHandler : function(res){
-			console.log(res);
+			if(res.status === 403){
+				wrongTokenHadler();
+			}else{
+				console.log(res.responseText);
+			}
 		}
 	})();
 }
@@ -77,7 +85,11 @@ function getInfoQuery(){
 			}
 		},
 		errorHandler : function(res){
-			console.log(res);
+			if(res.status === 403){
+				wrongTokenHadler();
+			}else{
+				console.log(res.responseText);
+			}
 		}
 	})();
 }

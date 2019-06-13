@@ -131,8 +131,12 @@ function sendTurn(turn){
         },
 		handler : turnHandler,
 		errorHandler : function(res){
-            console.log(res);
-            makeTurnButton.disabled = false;
+            if(res.status === 403){
+				wrongTokenHadler();
+			}else{
+				console.log(res.responseText);
+				makeTurnButton.disabled = false;
+			}
 		}
 	})();
 }
@@ -184,8 +188,12 @@ function getFightDetailsQuery(combatId, handler){
         },
 		handler : handler,
 		errorHandler : function(res){
-            console.log(res);
-            makeTurnButton.disabled = false;
+            if(res.status === 403){
+				wrongTokenHadler();
+			}else{
+				makeTurnButton.disabled = false;
+				console.log(res.responseText);
+			}
 		}
 	})();
 }
