@@ -122,3 +122,15 @@
     padding: 10px;
     text-align: center;
 }
+
+@media(max-width: 670px){
+    .wrapper{
+        width: 90%;
+    }
+}
+
+@media(max-width: 475px){
+    .auth-form{
+        width: 95%;
+    }
+}

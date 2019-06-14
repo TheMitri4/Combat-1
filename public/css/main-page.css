@@ -40,14 +40,14 @@
     margin:20px;
 }
 .page-main {
-    flex-basis: 50%;
+    height: 65%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .page-bot {
-    flex-basis: 25%;
+    height: 35%;
     background: rgba(0, 0, 0, 0.7);
-    margin-top: 25px;
 }
 /* ---------------------------PAGE-MAIN-------------------- */
 .main-menu {
@@ -88,4 +88,10 @@
 }
 .main-menu__search-status {
     
+}
+
+@media(max-width: 600px){
+    .page-main{
+        height: 100%;
+    }
 }

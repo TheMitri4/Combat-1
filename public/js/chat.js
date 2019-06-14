@@ -162,8 +162,25 @@ function getOnlineUsersQuery(){
 	AJAX(getOnlineUsersObject)();
 }
 
-
 getOnlineUsersQuery();
 setInterval(() => {
     getOnlineUsersQuery();
 }, 5000);
+
+let chatBlock = document.querySelector('.chat');
+let chatShowButton = document.querySelector('.chat__mobile-show');
+let chatHideButton = document.querySelector('.chat__mobile-hide');
+
+chatShowButton.addEventListener('click', () => {
+	chatBlock.style.display = 'block';
+	setTimeout(() => {
+		chatBlock.style.opacity = 1;
+	}, 0);
+})
+
+chatHideButton.addEventListener('click', () => {
+	chatBlock.style.opacity = 0;
+	setTimeout(() => {
+		chatBlock.style = '';
+	}, 500);
+})
