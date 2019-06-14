@@ -47,20 +47,24 @@ function createMessage(time, author, text){
 
 let chatMessagesContainer = document.querySelector('.chat__messages');
 
-function addMessages(arr, container){
-	let wrapper = document.createDocumentFragment();
-	
-	arr.forEach(item => {
-		let timestamp = new Date(item.timestamp).toTimeString().substring(0,8);
-		wrapper.appendChild(createMessage(timestamp, item.user.username, item.message));
-	});
-
-	container.appendChild(wrapper);
-	container.scrollTop = container.scrollHeight;
-}
+let addMessages = (function(){
+	let lastTimestamp = 0;
+	return function(arr, container){
+		let wrapper = document.createDocumentFragment();
+		arr.forEach(item => {
+			if(item.timestamp > lastTimestamp){
+				let timestamp = new Date(item.timestamp).toTimeString().substring(0,8);
+				wrapper.appendChild(createMessage(timestamp, item.user.username, item.message));
+			}
+		});
+		lastTimestamp = arr[arr.length - 1].timestamp;
+		container.appendChild(wrapper);
+		container.scrollTop = container.scrollHeight;
+	}
+})();
 
 function getMessagesQuery(){
-	let timestamp = (+ new Date()) - 1000;
+	let timestamp = (+ new Date()) - 5000;
     let getMessagesObj = new GetMessagesObject(testToken, timestamp);
     AJAX(getMessagesObj)();
 }
