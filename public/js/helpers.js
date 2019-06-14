@@ -21,21 +21,20 @@ function onDOMReady(handler){
 }
 */
 function AJAX(configObject){
-	var configObject = Object.assign({}, configObject);
-	var xhr = new XMLHttpRequest();
-	configObject.url = config.baseUrlForAJAXQuery + configObject.url;
+	let xhr = new XMLHttpRequest();
+	let url = config.baseUrlForAJAXQuery + configObject.url;
 	if(configObject.method === 'GET' && configObject.body){
-		configObject.url += '?' ;
-		for(var key in configObject.body){
-			configObject.url += key + '=' + configObject.body[key] + '&';
+		url += '?' ;
+		for(let key in configObject.body){
+			url += key + '=' + configObject.body[key] + '&';
 		}
-		configObject.url = configObject.url.substring(0, configObject.url.length + 1);    
+		url = url.substring(0, url.length + 1);    
 	}
 
-	xhr.open(configObject.method, configObject.url, true);
+	xhr.open(configObject.method, url, true);
 
 	if(configObject.header){
-		for(var key in configObject.header){
+		for(let key in configObject.header){
 			xhr.setRequestHeader(key, configObject.header[key]);
 		}
 	}
@@ -52,8 +51,8 @@ function AJAX(configObject){
 	};
 	return function(){
 		if(configObject.body){
-			var body = "";
-			for(var key in configObject.body){
+			let body = "";
+			for(let key in configObject.body){
 				body += key + '=' + configObject.body[key] + '&';
 			}
 			// body = body.substring(0, configObject.url.length+1); 

@@ -6,21 +6,21 @@ class GetMessagesObject{
 			token: token,
 			timestamp: timestamp
 		};
-	}
-	method = 'GET';
-	url = 'chat';
-	handler = function(result){
+		this.method = 'GET';
+		this.url =  'chat';
+	};
+	handler(result){
 		if(result.chat.length > 0){
 			addMessages(result.chat, chatMessagesContainer);
 		}
-	}
-	errorHandler = function(res){
+	};
+	errorHandler(res){
 		if(res.status === 403){
 			wrongTokenHadler();
 		}else{
 			console.log(res.responseText);
 		}
-	}
+	};
 }
 
 function createMessage(time, author, text){
@@ -78,22 +78,22 @@ class SendMessageObject{
 		this.body = {
 			token: token,
 			message: message,
-			timestamp: timestamp
+			timestamp: timestamp,
 		};
+		this.url =  'chat';
+		this.method = 'POST';
+		this.header = POST_HEADER;
 	}
-	method = 'POST';
-	url = 'chat';
-	header = POST_HEADER;
-	handler = function(result){
+	handler(result){
 		sendTextArea.value = '';
-	}
-	errorHandler = function(res){
+	};
+	errorHandler(res){
 		if(res.status === 403){
 			wrongTokenHadler();
 		}else{
 			console.log(res.responseText);
 		}
-	}
+	};
 }
 
 let sendForm = document.querySelector('.chat__send-block')
