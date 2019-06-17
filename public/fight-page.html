@@ -1,103 +1,103 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Game</title>
-    <link rel="stylesheet" href="css/fight-page.css">
-    <link rel="stylesheet" href="css/chat.css">
-    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Jura&display=swap" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Game</title>
+	<link rel="stylesheet" href="css/fight-page.css">
+	<link rel="stylesheet" href="css/chat.css">
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One|Jura&display=swap" rel="stylesheet">
 </head>
 <body class="scene">
-    <div data-speed='100' class="layer"></div>
-    <div class="page">
-        <div class="page-top">
-            <div class="info-player page-top_item">
-                <div class="info-player__char-icon"></div>
-                <div class="info-player-side-block">
-                    <div class="info-player__char-nickname"></div>
-                    <div class="info-player__char-hp"></div>
-                </div>
-            </div>
-            <div class="turn-switcher page-top_item">
-                <div class="turn-switcher__timer">30</div>
-                <button class="turn-switcher__button">Конец хода</button>
-            </div>
-            <div class="info-enemy page-top_item">
-                <div class="info-enemy-side-block">
-                    <div class="info-enemy__char-nickname"></div>
-                    <div class="info-enemy__char-hp"></div>
-                </div>
-                <div class="info-enemy__char-icon"></div>
-            </div>
-        </div>
-        <div class="page-main">
-            <div class="player-block">
-                <div class="char-player">
-                    <div class="char-player__head body-part"></div>
-                    <div class="char-player__body body-part"></div>
-                    <div class="char-player__belt body-part"></div>
-                    <div class="char-player__legs body-part"></div>
-                </div>
-            </div>
-            <div class="battle-info">
-                <div class="battle-info-actions">
-                    <div class="battle-info-defence">
-                        <p class="battle-info-defence__title">Защита</p>
-                        <input type="checkbox" name="defence" id="head_def" value="head" hidden><label for="head_def">Голова</label>
-                        <input type="checkbox" name="defence" id="body_def" value="body" hidden><label for="body_def">Торс</label>
-                        <input type="checkbox" name="defence" id="belt_def" value="belt" hidden><label for="belt_def">Пах</label>
-                        <input type="checkbox" name="defence" id="legs_def" value="legs" hidden><label for="legs_def">Ноги</label>
-                    </div>
-                    <div class="battle-info-attack">
-                        <p class="battle-info-attack__title">Атака</p>
-                        <input type="radio" name="attack" id="head_atc" value="head" hidden><label for="head_atc">Голова</label>
-                        <input type="radio" name="attack" id="body_atc" value="body" hidden><label for="body_atc">Торс</label>
-                        <input type="radio" name="attack" id="belt_atc" value="belt" hidden><label for="belt_atc">Пах</label>
-                        <input type="radio" name="attack" id="legs_atc" value="legs" hidden><label for="legs_atc">Ноги</label>
-                    </div>
-                    <div class="battle-info__blocked hidden">
-                        <h1 class="battle-info__blocked-title">Ожидание противника</h1>
-                    </div>
-                </div>
-                <div class="battle-info__battle-log battle-log">
-                    <!-- <p class="battle-log__item">
-                        <span class="battle-log__player-name">themitri4</span> наносит удар в голову, но 
-                        <span class="battle-log__enemy-name">test</span> уклоняется
-                    </p> -->
-                </div>
-            </div>
-            <div class="enemy-block">
-                <div class="char-enemy">
-                    <div class="char-enemy__head body-part"></div>
-                    <div class="char-enemy__body body-part"></div>
-                    <div class="char-enemy__belt body-part"></div>
-                    <div class="char-enemy__legs body-part"></div>
-                </div>
-            </div>
-        </div>
-        <div class="page-bot">
-            <div class="footer">
-                <div class="chat">
-                    <div class="chat__messages"></div>
-                    <form class="chat__send-block">
-                        <input class="chat__send-text" placeholder="Введите сообщение...">
-                        <button class="chat__send-button">Отправить</button>
-                    </form>
-                </div>
-                <div class="online-users"></div>
-            </div>
-        </div>
-        <div class="fight-results__wrapper hidden">
-            <div class="fight-results">
-                <h1 class="fight-results__title">Поражение</h1>
-                <button class="fight-results__return-button">Вернуться</button>
-            </div>
-        </div>
-    </div>
-    <script src="js/helpers.js"></script>
-    <script src="js/chat.js"></script>
-    <script src="js/fight-page.js"></script>
+	<div data-speed='100' class="layer"></div>
+	<div class="page">
+		<div class="page-top">
+			<div class="info-player page-top_item">
+				<div class="info-player__char-icon"></div>
+				<div class="info-player-side-block">
+					<div class="info-player__char-nickname"></div>
+					<div class="info-player__char-hp"></div>
+				</div>
+			</div>
+			<div class="turn-switcher page-top_item">
+				<div class="turn-switcher__timer">30</div>
+				<button class="turn-switcher__button">Конец хода</button>
+			</div>
+			<div class="info-enemy page-top_item">
+				<div class="info-enemy-side-block">
+					<div class="info-enemy__char-nickname"></div>
+					<div class="info-enemy__char-hp"></div>
+				</div>
+				<div class="info-enemy__char-icon"></div>
+			</div>
+		</div>
+		<div class="page-main">
+			<div class="player-block">
+				<div class="char-player">
+					<div class="char-player__head body-part"></div>
+					<div class="char-player__body body-part"></div>
+					<div class="char-player__belt body-part"></div>
+					<div class="char-player__legs body-part"></div>
+				</div>
+			</div>
+			<div class="battle-info">
+				<div class="battle-info-actions">
+					<div class="battle-info-defence">
+						<p class="battle-info-defence__title">Защита</p>
+						<input type="checkbox" name="defence" id="head_def" value="head" hidden><label for="head_def">Голова</label>
+						<input type="checkbox" name="defence" id="body_def" value="body" hidden><label for="body_def">Торс</label>
+						<input type="checkbox" name="defence" id="belt_def" value="belt" hidden><label for="belt_def">Пах</label>
+						<input type="checkbox" name="defence" id="legs_def" value="legs" hidden><label for="legs_def">Ноги</label>
+					</div>
+					<div class="battle-info-attack">
+						<p class="battle-info-attack__title">Атака</p>
+						<input type="radio" name="attack" id="head_atc" value="head" hidden><label for="head_atc">Голова</label>
+						<input type="radio" name="attack" id="body_atc" value="body" hidden><label for="body_atc">Торс</label>
+						<input type="radio" name="attack" id="belt_atc" value="belt" hidden><label for="belt_atc">Пах</label>
+						<input type="radio" name="attack" id="legs_atc" value="legs" hidden><label for="legs_atc">Ноги</label>
+					</div>
+					<div class="battle-info__blocked hidden">
+						<h1 class="battle-info__blocked-title">Ожидание противника</h1>
+					</div>
+				</div>
+				<div class="battle-info__battle-log battle-log"></div>
+			</div>
+			<div class="enemy-block">
+				<div class="char-enemy">
+					<div class="char-enemy__head body-part"></div>
+					<div class="char-enemy__body body-part"></div>
+					<div class="char-enemy__belt body-part"></div>
+					<div class="char-enemy__legs body-part"></div>
+				</div>
+			</div>
+		</div>
+		<div class="page-bot">
+			<div class="battle-info__battle-log battle-log battle-log--mobile"></div>
+			<div class="footer">
+				<button class="chat__mobile-show">
+					<svg class="chat__message-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+						<path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+					</svg>
+				</button>
+				<div class="chat">
+					<div class="chat__messages"></div>
+					<form class="chat__send-block">
+						<input class="chat__send-text" placeholder="Введите сообщение...">
+						<button class="chat__send-button">Отправить</button>
+					</form>
+					<button class="chat__mobile-hide">
+						<svg class="chat__close-icon" xmlns="http://www.w3.org/2000/svg" width="23" height="22" viewBox="0 0 23 22">
+							<path d="M22.979 20.569l-9.99-9.574 9.989-9.573-1.487-1.425-9.988 9.573L1.516-.003.029 1.422l9.987 9.573-9.988 9.574 1.488 1.425 9.987-9.574 9.989 9.574z"/>
+						</svg>
+					</button>
+				</div>
+				<div class="online-users"></div>
+			</div>
+		</div>
+	</div>
+	<script src="js/helpers.js"></script>
+	<script src="js/chat.js"></script>
+	<script src="js/fight-page.js"></script>
 </body>
 </html>
