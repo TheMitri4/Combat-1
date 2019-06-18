@@ -34,9 +34,9 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    /* justify-content: space-between; */
 }
 .page-top {
-    /* flex-basis: 20%; */
     height: 177px;
     flex-shrink: 0;
     display: flex;
@@ -46,7 +46,6 @@ body {
     margin:15px;
 }
 .page-main {
-    /* flex-basis: 50%; */
     height: 50%;
     display: flex;
     justify-content: space-between;
@@ -320,6 +319,9 @@ body {
     left: 0;
     background-color: rgba(0,0,0,0.8);
 }
+.battle-info__blocked--mobile{
+    display: none;
+}
 .battle-info__blocked-title{
     font-size: 24px;
     margin: 0;
@@ -373,9 +375,6 @@ body {
 }
 .char-enemy .enemy-body-part_active:hover{
     animation: none;
-}
-.hidden{
-    display: none;
 }
 @keyframes blink {
     from {
@@ -440,7 +439,40 @@ body {
     display: none;
 }
 
-@media(max-width: 600px){
+@media(max-width: 1100px){
+    .page-top{
+        height: 157px;
+    }
+
+    .info-player__char-icon{
+        width: 120px;
+        height: 120px;
+    }
+
+    .info-enemy__char-icon{
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media(max-width: 900px){
+    .page-top{
+        height: 137px;
+    }
+
+    .info-player__char-icon{
+        width: 110px;
+        height: 110px;
+    }
+
+    .info-enemy__char-icon{
+        width: 110px;
+        height: 110px;
+    }
+}
+
+
+@media(max-width: 700px){
     .page{
         justify-content: space-between;
     }
@@ -485,8 +517,16 @@ body {
         transform: none;
     }
 
+    .page-main{
+        position: relative;
+    }
+
     .battle-info{
         display: none;
+    }
+
+    .battle-info__blocked--mobile{
+        display: flex;
     }
 
     .player-block{
@@ -512,5 +552,12 @@ body {
     .battle-log--mobile{
         display: block;
         height: 100%;
+        padding-right: 40px;
+        position: relative;
+        border-radius: 15px 0 0 0;
     }
+}
+
+.hidden{
+    display: none;
 }

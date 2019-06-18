@@ -79,7 +79,7 @@ e.addEventListener('click', () => {
 // Логика боя
 
 const makeTurnButton = document.querySelector('.turn-switcher__button');
-const turnWaitWrapper = document.querySelector('.battle-info__blocked');
+const turnWaitWrappers = document.querySelectorAll('.battle-info__blocked');
 const fightResultsBlock = document.querySelector('.fight-results__wrapper');
 
 const playerHealthBar = document.querySelector('.info-player-char-hp-bar');
@@ -91,7 +91,7 @@ const enemyHealthBarHp = enemyHealthBar.querySelector('.info-enemy__char-hp');
 const enemyHealthBarHit = enemyHealthBar.querySelector('.info-enemy__char-hp-hit');
 const enemyHealthBarText = enemyHealthBar.querySelector('.info-enemy__char-hp-num');
 
-const battleLog = document.querySelector('.battle-log');
+const battleLogs = document.querySelectorAll('.battle-log');
 
 makeTurnButton.addEventListener('click', function(){
     const defAreas = Array.from(checkboxDef).filter(item => {
@@ -164,13 +164,13 @@ function turnHandler(res){
 		}
 	}
 	if(!res.combat.turn_status){
-		turnWaitWrapper.classList.remove('hidden');
+		turnWaitWrappers.forEach(item => item.classList.remove('hidden'));
 		setTimeout(() => {
 			getFightDetailsQuery(res.combat.id, turnHandler);
 		},1000);
 	}else{
 		makeTurnButton.disabled = false;
-		turnWaitWrapper.classList.add('hidden');
+		turnWaitWrappers.forEach(item => item.classList.add('hidden'));
 
 		const playerHealth = Math.round((res.combat.you.health / 30) * 100);
 		const enemyHealth = Math.round((res.combat.enemy.health / 30) * 100);
@@ -184,7 +184,7 @@ function turnHandler(res){
 
 		if(res.combat.results.length != 0){
 			let turnResults = res.combat.results[res.combat.results.length - 1];
-			turnResults.forEach(item => addLogItem(createLogItem(item), battleLog));
+			turnResults.forEach(item => addLogItem(createLogItem(item), battleLogs));
 		}
 	}
 }
@@ -234,7 +234,7 @@ function setupFightPageHandler(res){
 
 	if(!res.combat.turn_status){
 		makeTurnButton.disabled = false;
-		turnWaitWrapper.classList.remove('hidden');
+		turnWaitWrappers.forEach(item => item.classList.remove('hidden'));
 		setTimeout(() => {
 			getFightDetailsQuery(res.combat.id, turnHandler);
 		},1000);
@@ -242,7 +242,9 @@ function setupFightPageHandler(res){
 
 	if(combat.results.length != 0){
 		combat.results.forEach(item => {
-			item.forEach(item => addLogItem(createLogItem(item), battleLog));
+			item.forEach(item => {
+				battleLogs.forEach(container => addLogItem(createLogItem(item), container));
+			})
 		})
 	}
 }
