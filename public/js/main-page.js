@@ -1,5 +1,7 @@
 const findFightButton = document.querySelector('.main-menu__button_start-battle');
 const waitingTitle = document.querySelector('.main-menu__search-status');
+const modalWindow = document.querySelector('.wrong__window');
+const modalWindowText = modalWindow.querySelector('.wrong__window__text');
 
 function findFightQuery(){
 	AJAX({
@@ -28,8 +30,14 @@ function findFightQuery(){
 		},
 		errorHandler : function(res){
 			if(res.status === 403){
+				modalWindowText.innerHTML = '403';
+				modalWindow.style = "transform: translateY(0px)";
+				setTimeout(modalHide, 5000);
 				wrongTokenHadler();
 			}else{
+				modalWindowText.innerHTML = 'Что-то пошло не так';
+				modalWindow.style = "transform: translateY(0px)";
+				setTimeout(modalHide, 5000);
 				console.log(res.responseText);
 			}
 		}
@@ -92,6 +100,10 @@ function getInfoQuery(){
 			}
 		}
 	})();
+}
+
+function modalHide() {
+	modalWindow.style = "transform: translateY(200px)";
 }
 
 getInfoQuery();

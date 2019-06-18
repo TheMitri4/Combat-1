@@ -19,7 +19,13 @@
                     <p class="main-menu__start-text"> Вы успешно вошли. Теперь нажмите кнопку "В бой" и победите своего соперника!</p>
                </div>
                <div class="main-menu-actions">
-                   <p class="main-menu__search-status hidden">Ожидаю противника</p>
+                   <div class="main-menu__search-status hidden">
+                    <div class="spinner">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>   
+                   </div>
                     <button class="main-menu__button_start-battle">В бой!</button>
                </div>
            </div>
@@ -46,6 +52,10 @@
                 <div class="online-users"></div>
             </div>
         </div>
+    </div>
+    <div class="wrong__window">
+        <div class="wrong__window__icon"></div>
+        <div class="wrong__window__text"></div>
     </div>
     <script src="js/helpers.js"></script>
     <script src="js/chat.js"></script>

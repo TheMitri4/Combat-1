@@ -82,8 +82,14 @@ const makeTurnButton = document.querySelector('.turn-switcher__button');
 const turnWaitWrapper = document.querySelector('.battle-info__blocked');
 const fightResultsBlock = document.querySelector('.fight-results__wrapper');
 
-const playerHealthBar = document.querySelector('.info-player__char-hp');
-const enemyHealthBar = document.querySelector('.info-enemy__char-hp');
+const playerHealthBar = document.querySelector('.info-player-char-hp-bar');
+const playerHealthBarHp = playerHealthBar.querySelector('.info-player__char-hp');
+const playerHealthBarHit = playerHealthBar.querySelector('.info-player__char-hp-hit');
+const playerHealthBarText = playerHealthBar.querySelector('.info-player__char-hp-num');
+const enemyHealthBar = document.querySelector('.info-enemy-char-hp-bar');
+const enemyHealthBarHp = enemyHealthBar.querySelector('.info-enemy__char-hp');
+const enemyHealthBarHit = enemyHealthBar.querySelector('.info-enemy__char-hp-hit');
+const enemyHealthBarText = enemyHealthBar.querySelector('.info-enemy__char-hp-num');
 
 const battleLog = document.querySelector('.battle-log');
 
@@ -168,8 +174,13 @@ function turnHandler(res){
 
 		const playerHealth = Math.round((res.combat.you.health / 30) * 100);
 		const enemyHealth = Math.round((res.combat.enemy.health / 30) * 100);
-		playerHealthBar.style.width = `${playerHealth}%`;
-		enemyHealthBar.style.width = `${enemyHealth}%`;
+
+		playerHealthBarText.innerHTML = playerHealth;
+		playerHealthBarHit.style.width = `${playerHealth}%`;
+		playerHealthBarHp.style.width = `${playerHealth}%`;
+		enemyHealthBarText.innerHTML = enemyHealth;
+		enemyHealthBarHit.style.width = `${enemyHealth}%`;
+		enemyHealthBarHp.style.width = `${enemyHealth}%`;
 
 		if(res.combat.results.length != 0){
 			let turnResults = res.combat.results[res.combat.results.length - 1];
@@ -213,8 +224,13 @@ function setupFightPageHandler(res){
 
 	const playerHealth = Math.round((res.combat.you.health / 30) * 100);
 	const enemyHealth = Math.round((res.combat.enemy.health / 30) * 100);
-	playerHealthBar.style.width = `${playerHealth}%`;
-	enemyHealthBar.style.width = `${enemyHealth}%`;
+
+	playerHealthBarText.innerHTML = playerHealth;
+	playerHealthBarHit.style.width = `${playerHealth}%`;
+	playerHealthBarHp.style.width = `${playerHealth}%`;
+	enemyHealthBarText.innerHTML = enemyHealth;
+	enemyHealthBarHit.style.width = `${enemyHealth}%`;
+	enemyHealthBarHp.style.width = `${enemyHealth}%`;
 
 	if(!res.combat.turn_status){
 		makeTurnButton.disabled = false;

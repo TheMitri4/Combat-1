@@ -1,6 +1,3 @@
-.hidden{
-    display: none;
-}
 * {
     font-size: 16px;
     -webkit-box-sizing: border-box;
@@ -87,11 +84,83 @@
     opacity: 0.7;
 }
 .main-menu__search-status {
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* -------------------------SPINNER---------------------- */
+.spinner {
+    display: flex;
+    justify-content: space-between;
+    width: 60px;
+}
+.spinner div {
+    background: wheat;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    animation:spinner-animation 1.3s linear infinite;
+    transform: scale(0.91);
+}
+.spinner div:nth-child(1){
+    -webkit-animation-delay:0.39s;
+    animation-delay:0.39s;
+}
+.spinner div:nth-child(2){
+    -webkit-animation-delay:0.52s;
+    animation-delay:0.52s;
+}
+.spinner div:nth-child(3){
+    -webkit-animation-delay:0.65s;
+    animation-delay:0.65s;
+}
+/* ----------------------------MODAL_WINDOW---------------- */
+.wrong__window {
+    position: absolute; 
+    bottom: 0px;
+    right: 0px;
+    margin: 10px;
+    width: 300px;
+    height: 150px;
+    display: flex;
+    border-radius: 15px;
+    border: 1px solid red;
+    background: rgba(0, 0, 0, 0.6);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(200px);
+    transition: 0.5s;
+}
+.wrong__window__icon {
+    width: 50px;
+    height: 50px;
+    background: url(../images/red_cross.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.wrong__window__text {
+    padding: 10px;
+    text-align: center;
+}
+
+.hidden{
+    display: none;
 }
 
 @media(max-width: 600px){
     .page-main{
         height: 100%;
+    }
+}
+
+@keyframes spinner-animation {
+    0%{
+        transform:scale(1.2);
+        opacity:1
+    }
+    100%{
+        transform:scale(0.7);
+        opacity:0.1
     }
 }
