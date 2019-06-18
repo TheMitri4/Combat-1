@@ -34,18 +34,18 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    /* justify-content: space-between; */
 }
 .page-top {
-    /* flex-basis: 20%; */
-    height: 20%;
+    height: 177px;
+    flex-shrink: 0;
     display: flex;
     justify-content: space-between;
 }
 .page-top_item {
-    margin:20px;
+    margin:15px;
 }
 .page-main {
-    /* flex-basis: 50%; */
     height: 50%;
     display: flex;
     justify-content: space-between;
@@ -59,40 +59,68 @@ body {
 /* ------------------------------PLAYER------------------------------------ */
 .info-player {
     display: flex;
-    flex-basis: 35%;
+    flex-basis: 33%;
 }
 .info-player__char-icon {
-    flex-basis: 146px;
+    height: 140px;
+    width: 140px;
     border: 1px solid black;
     border-radius: 73px;
     background: url(../images/sprites/gg_small.png);
     background-position: center;
     background-size: cover;
+    z-index: 100;
 }
 .info-player-side-block {
     flex-grow: 1;
-    margin-left: -2px;
+    margin-left: -8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 .info-player__char-nickname {
-    align-self: flex-start;
-    margin-bottom: 10px;
-    padding-left: 30px;
+    margin-right: -5px;
+    width: 100%;
+    transform: skew(-10deg);
+    background: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,0.7), rgba(0,0,0,0.7), rgba(0,0,0,0));
+    text-align: center;
     font-size: 24px;
     color: white;
 }
-.info-player__char-hp {
-    width: 0;
+.info-player-char-hp-bar {
+    position: relative;
+    width: 100%;
     height: 25px;
+    border: 1px solid black;
+    border-radius: 0 15px 15px 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    overflow: hidden;
+}
+.info-player__char-hp-hit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transition: width 0.5s;
+    z-index: 1;
+}
+.info-player__char-hp {
+    position: absolute;
+    width: 0;
+    height: 100%;
     border: 1px solid red;
-    transform: skew(-15deg);
     background-color: red;
-    font-weight: bold;
+    z-index: 2;
+}
+.info-player__char-hp-num {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     color: wheat;
     text-align: center;
-    transition: width 0.3s;
+    font-weight: bold;
+    z-index: 3;
 }
 /* ---------------------------------TURN-SWITCHER--------------------- */
 .turn-switcher {
@@ -104,6 +132,9 @@ body {
     align-items: center;
 }
 .turn-switcher__timer {
+    background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.7), rgba(0,0,0,0.7), rgba(0,0,0,0));
+    width: 110px;
+    text-align: center;
     font-size: 36px;
     color: white;
     font-family: 'Fjalla One', sans-serif;
@@ -116,45 +147,75 @@ body {
     color: wheat;
     border: none;
 }
+.turn-switcher__button:hover {
+    opacity: 0.7;
+}
 /* ----------------------------------ENEMY---------------------------- */
 .info-enemy {
     display: flex;
-    flex-basis: 35%;
+    flex-basis: 33%;
     justify-content: flex-end;
 }
 .info-enemy__char-icon {
-    flex-basis: 146px;
+    height: 140px;
+    width: 140px;
     border: 1px solid black;
     border-radius: 73px;
     background: url(../images/sprites/gg_small.png);
     background-position: center;
     background-size: cover;
+    z-index: 100;
 }
 .info-enemy-side-block {
     flex-grow: 1;
-    margin-right: -2px;
+    margin-right: -8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 .info-enemy__char-nickname {
-    align-self: flex-end;
-    margin-bottom: 10px;
-    padding-right: 30px;
+    width: 100%;
+    transform: skew(-10deg);
+    background: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,0.7), rgba(0,0,0,0.7), rgba(0,0,0,0));
+    text-align: center;
     font-size: 24px;
     color: white;
 }
-.info-enemy__char-hp {
-    width: 0;
+.info-enemy-char-hp-bar {
+    position: relative;
+    width: 100%;
     height: 25px;
-    margin-left: auto;
+    border: 1px solid black;
+    border-radius: 15px 0 0 15px;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+.info-enemy__char-hp-hit {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transition: width 0.5s;
+    z-index: 1;
+}
+.info-enemy__char-hp {
+    position: absolute;
+    width: 0;
+    height: 100%;
     border: 1px solid red;
-    transform: skew(15deg);
     background-color: red;
-    font-weight: bold;
+    z-index: 2;
+}
+.info-enemy__char-hp-num {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     color: wheat;
     text-align: center;
-    transition: width 0.3s;
+    font-weight: bold;
+    z-index: 3;
 }
 /* ----------------------------PAGE-MID--------------------------------- */
 /* ----------------------------PLAYER----------------------------------- */
@@ -258,6 +319,9 @@ body {
     left: 0;
     background-color: rgba(0,0,0,0.8);
 }
+.battle-info__blocked--mobile{
+    display: none;
+}
 .battle-info__blocked-title{
     font-size: 24px;
     margin: 0;
@@ -312,9 +376,6 @@ body {
 .char-enemy .enemy-body-part_active:hover{
     animation: none;
 }
-.hidden{
-    display: none;
-}
 @keyframes blink {
     from {
         opacity: 0;
@@ -352,7 +413,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 20%;
+    width: 382px;
     height: fit-content;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 15px;
@@ -372,4 +433,131 @@ body {
     border: none;
     margin: 0 auto;
     margin-bottom: 20px;
+}
+
+.battle-log--mobile{
+    display: none;
+}
+
+@media(max-width: 1100px){
+    .page-top{
+        height: 157px;
+    }
+
+    .info-player__char-icon{
+        width: 120px;
+        height: 120px;
+    }
+
+    .info-enemy__char-icon{
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media(max-width: 900px){
+    .page-top{
+        height: 137px;
+    }
+
+    .info-player__char-icon{
+        width: 110px;
+        height: 110px;
+    }
+
+    .info-enemy__char-icon{
+        width: 110px;
+        height: 110px;
+    }
+}
+
+
+@media(max-width: 700px){
+    .page{
+        justify-content: space-between;
+    }
+
+    .page-top{
+        height: 15%;
+    }
+
+    .page-top_item{
+        margin: 8px;
+    }
+
+    .turn-switcher__button{
+        width: 100px;
+    }
+
+    .info-player__char-icon{
+        display: none;
+    }
+
+    .info-player__char-nickname{
+        padding: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .info-player__char-hp{
+        transform: none;
+    }
+
+    .info-enemy__char-icon{
+        display: none;
+    }
+
+    .info-enemy__char-nickname{
+        padding: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .info-enemy__char-hp{
+        transform: none;
+    }
+
+    .page-main{
+        position: relative;
+    }
+
+    .battle-info{
+        display: none;
+    }
+
+    .battle-info__blocked--mobile{
+        display: flex;
+    }
+
+    .player-block{
+        flex-basis: 48%;
+    }
+
+    .enemy-block{
+        flex-basis: 48%;
+    }
+
+    .fight-results{
+        width: 80%;
+    }
+
+    .page .page-bot{
+        height: 30%;
+    }
+
+    .footer{
+        height: 0;
+    }
+
+    .battle-log--mobile{
+        display: block;
+        height: 100%;
+        padding-right: 40px;
+        position: relative;
+        border-radius: 15px 0 0 0;
+    }
+}
+
+.hidden{
+    display: none;
 }
