@@ -184,7 +184,9 @@ function turnHandler(res){
 
 		if(res.combat.results.length != 0){
 			let turnResults = res.combat.results[res.combat.results.length - 1];
-			turnResults.forEach(item => addLogItem(createLogItem(item), battleLogs));
+			turnResults.forEach(item => {
+				battleLogs.forEach(container => addLogItem(createLogItem(item), container));
+			})
 		}
 	}
 }
