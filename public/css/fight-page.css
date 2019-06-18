@@ -414,7 +414,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 20%;
+    width: 382px;
     height: fit-content;
     background-color: rgba(255, 255, 255, 1);
     border-radius: 15px;
@@ -434,4 +434,83 @@ body {
     border: none;
     margin: 0 auto;
     margin-bottom: 20px;
+}
+
+.battle-log--mobile{
+    display: none;
+}
+
+@media(max-width: 600px){
+    .page{
+        justify-content: space-between;
+    }
+
+    .page-top{
+        height: 15%;
+    }
+
+    .page-top_item{
+        margin: 8px;
+    }
+
+    .turn-switcher__button{
+        width: 100px;
+    }
+
+    .info-player__char-icon{
+        display: none;
+    }
+
+    .info-player__char-nickname{
+        padding: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .info-player__char-hp{
+        transform: none;
+    }
+
+    .info-enemy__char-icon{
+        display: none;
+    }
+
+    .info-enemy__char-nickname{
+        padding: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .info-enemy__char-hp{
+        transform: none;
+    }
+
+    .battle-info{
+        display: none;
+    }
+
+    .player-block{
+        flex-basis: 48%;
+    }
+
+    .enemy-block{
+        flex-basis: 48%;
+    }
+
+    .fight-results{
+        width: 80%;
+    }
+
+    .page .page-bot{
+        height: 30%;
+    }
+
+    .footer{
+        height: 0;
+    }
+
+    .battle-log--mobile{
+        display: block;
+        height: 100%;
+    }
 }
