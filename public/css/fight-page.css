@@ -47,6 +47,7 @@ body {
     margin:15px;
 }
 .page-main {
+    position: relative;
     height: 50%;
     display: flex;
     justify-content: space-between;
@@ -235,11 +236,7 @@ body {
     flex-direction: column;
 }
 .char-player .body-part {
-    opacity: 0;
     flex-basis: 25%;
-    background: url(../images/shield.png) no-repeat;
-    background-size: contain; 
-    background-position: center;
 }
 .char-player .body-part:hover {
     animation-name: blink;
@@ -249,12 +246,26 @@ body {
     /* opacity: 0.9;
     transition: opacity 0.5s; */
     cursor: pointer;
+    background: url(../images/shield.png) no-repeat;
+    background-size: contain; 
+    background-position: center;
 }
 .char-player .body-part_active{
     opacity: 0.9;
+    background: url(../images/shield.png) no-repeat;
+    background-size: contain; 
+    background-position: center;
 }
 .char-player .body-part_active:hover{
     animation: none;
+}
+.char-player__enemy-hit {
+    background-image: url(../images/sword.png);
+    background-repeat: no-repeat;
+    background-size: contain; 
+    background-position: center;
+    height: 100%;
+    opacity: 0;
 }
 /* -----------------------------BATTLE-INFO----------------------------- */
 .battle-info {
@@ -308,25 +319,6 @@ body {
 .battle-info-attack__title {
     text-align: center;
 }
-.battle-info__blocked{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    border-radius: 15px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0.8);
-}
-.battle-info__blocked--mobile{
-    display: none;
-}
-.battle-info__blocked-title{
-    font-size: 24px;
-    margin: 0;
-}
 .battle-info__battle-log {
     flex-basis: 49%;
     background: rgba(0,0,0,0.7);
@@ -341,6 +333,26 @@ body {
 .battle-log__item{
     margin: 0;
     margin-bottom: 10px;
+}
+/* ---------------------------------BLOCK-WRAPPER---------------------- */
+.battle-info__blocked{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background-color: rgba(0,0,0,0.8);
+    transition: 0.5s;
+    z-index: 500;
+}
+.battle-info__blocked-title{
+    font-size: 24px;
+    margin: 0;
 }
 /* -------------------------------------ENEMY-------------------------- */
 .enemy-block {
@@ -358,11 +370,7 @@ body {
     flex-direction: column;
 }
 .char-enemy .body-part {
-    opacity: 0;
     flex-basis: 25%;
-    background: url(../images/sword.png) no-repeat;
-    background-size: contain; 
-    background-position: center;
 }
 .char-enemy .body-part:hover {
     animation-name: blink;
@@ -370,13 +378,28 @@ body {
     animation-iteration-count: infinite;
     animation-direction: alternate;
     cursor: pointer;
+    background: url(../images/sword.png) no-repeat;
+    background-size: contain; 
+    background-position: center;
 }
 .char-enemy .enemy-body-part_active{
     opacity: 0.9;
+    background: url(../images/sword.png) no-repeat;
+    background-size: contain; 
+    background-position: center;
 }
 .char-enemy .enemy-body-part_active:hover{
     animation: none;
 }
+.char-enemy__enemy-block {
+    height: 100%;
+    background: url(../images/sword.png) no-repeat,
+                url(../images/shield.png) no-repeat;
+    background-size: contain; 
+    background-position: center;
+    opacity: 0;
+}
+/* ---------------------------------------------------------- */
 @keyframes blink {
     from {
         opacity: 0;
@@ -406,6 +429,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 1000;
 }
 .fight-results{
     display: flex;
@@ -530,10 +554,6 @@ body {
 
     .battle-info{
         display: none;
-    }
-
-    .battle-info__blocked--mobile{
-        display: flex;
     }
 
     .player-block{

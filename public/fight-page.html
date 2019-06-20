@@ -43,10 +43,18 @@
         <div class="page-main">
             <div class="player-block">
                 <div class="char-player">
-                    <div class="char-player__head body-part"></div>
-                    <div class="char-player__body body-part"></div>
-                    <div class="char-player__belt body-part"></div>
-                    <div class="char-player__legs body-part"></div>
+                    <div class="char-player__head body-part">
+                        <div class="char-player__enemy-hit hidden"></div>
+                    </div>
+                    <div class="char-player__body body-part">
+                        <div class="char-player__enemy-hit hidden"></div>
+                    </div>
+                    <div class="char-player__belt body-part">
+                        <div class="char-player__enemy-hit hidden"></div>
+                    </div>
+                    <div class="char-player__legs body-part">
+                        <div class="char-player__enemy-hit hidden"></div>
+                    </div>
                 </div>
             </div>
             <div class="battle-info">
@@ -65,21 +73,26 @@
                         <input type="radio" name="attack" id="belt_atc" value="belt" hidden><label for="belt_atc">Пах</label>
                         <input type="radio" name="attack" id="legs_atc" value="legs" hidden><label for="legs_atc">Ноги</label>
                     </div>
-                    <div class="battle-info__blocked hidden">
-                        <h1 class="battle-info__blocked-title">Ожидание противника</h1>
-                    </div>
                 </div>
                 <div class="battle-info__battle-log battle-log"></div>
             </div>
             <div class="enemy-block">
                 <div class="char-enemy">
-                    <div class="char-enemy__head body-part"></div>
-                    <div class="char-enemy__body body-part"></div>
-                    <div class="char-enemy__belt body-part"></div>
-                    <div class="char-enemy__legs body-part"></div>
+                    <div class="char-enemy__head body-part">
+                        <div class="char-enemy__enemy-block hidden"></div>
+                    </div>
+                    <div class="char-enemy__body body-part">
+                        <div class="char-enemy__enemy-block hidden"></div>
+                    </div>
+                    <div class="char-enemy__belt body-part">
+                        <div class="char-enemy__enemy-block hidden"></div>
+                    </div>
+                    <div class="char-enemy__legs body-part">
+                        <div class="char-enemy__enemy-block hidden"></div>
+                    </div>
                 </div>
             </div>
-            <div class="battle-info__blocked hidden battle-info__blocked--mobile">
+            <div class="battle-info__blocked hidden ">
                 <h1 class="battle-info__blocked-title">Ожидание противника</h1>
             </div>
         </div>
