@@ -142,6 +142,7 @@ function sendTurn(turn){
 
 function turnHandler(res){
 	if(res.combat.status === 'finished'){
+		showTurnResults(res);
 		if(res.combat.you.health <= 0){
 			fightResultsBlock.querySelector('.fight-results__title').innerText = 'Поражение';
 			fightResultsBlock.classList.remove('hidden');
@@ -155,6 +156,7 @@ function turnHandler(res){
 				redirect('main-page')
 			});
 		}
+		return;
 	}
 	if(!res.combat.turn_status){
 		turnWaitWrapper.classList.remove('hidden');
@@ -163,79 +165,79 @@ function turnHandler(res){
 			getFightDetailsQuery(res.combat.id, turnHandler);
 		},1000);
 	}else{
-		const yourId = res.combat.you.id;
-		const hits = {
-			head: 0,
-			body: 1,
-			belt: 2,
-			legs: 3
-		};
-		
-		turnWaitWrapper.classList.remove('hidden');
-		turnWaitWrapper.style = "opacity:1";
-		turnWaitWrapper.children[0].innerHTML = "Ход противника";
-		// ОТОБРАЖЕНИЕ ХОДА ПРОТИВНИКА
-		setTimeout(() => {
-			turnWaitWrapper.style = "opacity:0";
-			res.combat.results[res.combat.results.length - 1].forEach(item => {
-				if (item.origin.id === yourId) {
-					enemyBodyBlock = enemyBody[hits[item.hit]].children[0];
-					enemyBodyBlock.style = "opacity:0.9";	
-					if (item.blocked) {
-						enemyBodyBlock.classList.remove('hidden');
-						enemyBody[hits[item.hit]].style = "background-color: rgba(0, 0, 255, 0.5)";
-					}  else {
-						enemyBody[hits[item.hit]].style = "background-color: rgba(255, 0, 0, 0.5)";
-					}
-				} else {
-					enemyAttack = playerBody[hits[item.hit]].children[0];
-					enemyAttack.classList.remove('hidden');
-					enemyAttack.style = "opacity:0.9";
-					if (item.blocked) {
-						playerBody[hits[item.hit]].style = "background-color: rgba(0, 0, 255, 0.5)";
-					} else {
-						playerBody[hits[item.hit]].style = "background-color: rgba(255, 0, 0, 0.5)";
-					}
-				}
-			});
-		}, 700);
-	
-		setTimeout(() => {
-			// ОБНУЛЕНИЕ ЭЛЕМЕНТОВ ВЫОРА
-			checkboxDef.forEach(item => item.checked = false);
-			checkboxAtc.forEach(item => item.checked = false);
-			enemyBody.forEach(item => item.classList.remove('enemy-body-part_active'));
-			playerBody.forEach(item => item.classList.remove('body-part_active'));
-			if (enemyBodyBlock) {enemyBodyBlock.classList.add('hidden');}	
-			if (enemyAttack) {enemyAttack.classList.add('hidden');}
-			enemyBody.forEach(item => item.style = "background-color: none");
-			playerBody.forEach(item => item.style = "background-color: none");
-			// ОБНУЛЕНИЕ ПЕРЕМЕННЫХ ДЛЯ ВЫБОРА АТАКИ
-			checkboxDefListener = 0; 
-			lastAttackIndex = null;
-
-			makeTurnButton.disabled = false;
-			turnWaitWrapper.classList.add('hidden');
-			turnWaitWrapper.children[0].innerHTML = "Ожидание противника";
-
-			const playerHealth = Math.round((res.combat.you.health / 30) * 100);
-			const enemyHealth = Math.round((res.combat.enemy.health / 30) * 100);
-
-			playerHealthBarText.innerHTML = playerHealth;
-			playerHealthBarHit.style.width = `${playerHealth}%`;
-			playerHealthBarHp.style.width = `${playerHealth}%`;
-			enemyHealthBarText.innerHTML = enemyHealth;
-			enemyHealthBarHit.style.width = `${enemyHealth}%`;
-			enemyHealthBarHp.style.width = `${enemyHealth}%`;
-	
-			if(res.combat.results.length != 0){
-				let turnResults = res.combat.results[res.combat.results.length - 1];
-				turnResults.forEach(item => {
-					battleLogs.forEach(container => addLogItem(createLogItem(item), container));
-				})
-			}
-		},2000);
+		showTurnResults(res);
 	}
+}
+
+function showTurnResults(res){
+	const yourId = res.combat.you.id;
+	const hits = {
+		head: 0,
+		body: 1,
+		belt: 2,
+		legs: 3
+	};
+	
+	// ОТОБРАЖЕНИЕ ХОДА ПРОТИВНИКА
+	setTimeout(() => {
+		res.combat.results[res.combat.results.length - 1].forEach(item => {
+			if (item.origin.id === yourId) {
+				enemyBodyBlock = enemyBody[hits[item.hit]].children[0];
+				enemyBodyBlock.style = "opacity:0.9";	
+				if (item.blocked) {
+					enemyBodyBlock.classList.remove('hidden');
+					enemyBody[hits[item.hit]].style = "background-color: rgba(0, 0, 255, 0.5)";
+				}  else {
+					enemyBody[hits[item.hit]].style = "background-color: rgba(255, 0, 0, 0.5)";
+				}
+			} else {
+				enemyAttack = playerBody[hits[item.hit]].children[0];
+				enemyAttack.classList.remove('hidden');
+				enemyAttack.style = "opacity:0.9";
+				if (item.blocked) {
+					playerBody[hits[item.hit]].style = "background-color: rgba(0, 0, 255, 0.5)";
+				} else {
+					playerBody[hits[item.hit]].style = "background-color: rgba(255, 0, 0, 0.5)";
+				}
+			}
+		});
+	}, 700);
+
+	setTimeout(() => {
+		// ОБНУЛЕНИЕ ЭЛЕМЕНТОВ ВЫОРА
+		checkboxDef.forEach(item => item.checked = false);
+		checkboxAtc.forEach(item => item.checked = false);
+		enemyBody.forEach(item => item.classList.remove('enemy-body-part_active'));
+		playerBody.forEach(item => item.classList.remove('body-part_active'));
+		if (enemyBodyBlock) {enemyBodyBlock.classList.add('hidden');}	
+		if (enemyAttack) {enemyAttack.classList.add('hidden');}
+		enemyBody.forEach(item => item.style = "background-color: none");
+		playerBody.forEach(item => item.style = "background-color: none");
+		// ОБНУЛЕНИЕ ПЕРЕМЕННЫХ ДЛЯ ВЫБОРА АТАКИ
+		checkboxDefListener = 0; 
+		lastAttackIndex = null;
+
+		makeTurnButton.disabled = false;
+		turnWaitWrapper.classList.add('hidden');
+		turnWaitWrapper.children[0].innerHTML = "Ожидание противника";
+
+		const playerHealth = Math.round((res.combat.you.health / 30) * 100);
+		const enemyHealth = Math.round((res.combat.enemy.health / 30) * 100);
+
+		playerHealthBarText.innerText = playerHealth >= 0 ? playerHealth : 0;
+		playerHealthBarHit.style.width = `${playerHealth >= 0 ? playerHealth : 0}%`;
+		playerHealthBarHp.style.width = `${playerHealth >= 0 ? playerHealth : 0}%`;
+		enemyHealthBarText.innerText = enemyHealth >= 0 ? enemyHealth : 0;
+		enemyHealthBarHit.style.width = `${enemyHealth >= 0 ? enemyHealth : 0}%`;
+		enemyHealthBarHp.style.width = `${enemyHealth >= 0 ? enemyHealth : 0}%`;
+
+		if(res.combat.results.length != 0){
+			let turnResults = res.combat.results[res.combat.results.length - 1];
+			turnResults.forEach(item => {
+				battleLogs.forEach(container => addLogItem(createLogItem(item), container));
+			})
+		}
+	},2000);
 }
 
 function getFightDetailsQuery(combatId, handler){
