@@ -329,7 +329,7 @@ function createLogItem(logData){
 		`<span>${logData.target.username}</span> пытался предугадать действия <span>${logData.origin.username}</span> но безуспешно`,
 		`<span>${logData.target.username}</span> упускает момент и получает ранение в ${hits[logData.hit]}`,
 		`<span>${logData.target.username}</span> пережил тяжелый удар в ${hits[logData.hit]} и жаждет мести`,
-		`<span>${logData.target.username}</span> не ожидал от <span>${logData.origin.username}</span> удар в ${hits[logData.hit]}`,
+		`<span>${logData.target.username}</span> не ожидал от <span>${logData.origin.username}</span> удара в ${hits[logData.hit]}`,
 		`<span>${logData.target.username}</span> отвлёкся и пропустил удар в ${hits[logData.hit]}`
 	];
 
@@ -338,7 +338,7 @@ function createLogItem(logData){
 	
 	if(logData.blocked){
 		logItem.innerHTML = blockedPhrases[Math.round(Math.random() * (blockedPhrases.length - 1) + 0)];
-		logItem.style = "color: white;"
+		logItem.style = "color: skyblue;"
 	}else{
 		logItem.innerHTML = missedHitPhrases[Math.round(Math.random() * (missedHitPhrases.length - 1) + 0)];
 		logItem.style = "color: crimson;";
