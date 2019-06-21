@@ -357,8 +357,6 @@ function addLogItem(item, container){
 function setRandomBackground(container){
 	const backgrounds = [
 		'cave.jpg',
-		'mountains.jpg',
-		'fire.jpg',
 		'wild.jpg',
 		'darkMountains.jpg',
 		'dayMountains.jpg',

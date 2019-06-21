@@ -17,30 +17,36 @@
 }
 .layer {
     position: absolute;
-    bottom: -10%;
-    right: -10%;
-    width: 110%;
-    height: 110%;
+    width: 100%;
+    height: 100%;
     z-index: -1;
 }
 .layer1 {
-    background: url(../images/first_layer.png) center;
+    background-image: url(../images/first_layer.png);
+    background-position: center;
     background-size: cover;
-    animation: animatedBackground 1000s linear infinite;
-    animation-fill-mode: forwards;
+    animation-name: animatedBackground;
+    animation-duration: 1000s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 .layer2 {
-    background: url(../images/second_layer.png) center;
+    background-image: url(../images/second_layer.png);
+    background-position: center;
     background-size: cover;
 }
 .layer3 {
-    background: url(../images/third_layer.png) center;
+    background-image: url(../images/third_layer.png);
+    background-position: center;
     background-size: cover;
-    animation: animatedBackground 450s linear infinite;
-    animation-fill-mode: backwards;
+    animation-name: animatedBackground;
+    animation-duration: 450s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 .layer4 {
-    background: url(../images/four_layer.png) center;
+    background-image: url(../images/four_layer.png);
+    background-position: center;
     background-size: cover;
 }
 .auth-form {
