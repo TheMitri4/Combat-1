@@ -117,17 +117,15 @@
 }
 .main-menu__button_sound-toggle {
     position: absolute;
-    right: 10px;
-    bottom: 10px;
-    width:45px;
-    height: 45px;
+    right: 0;
+    top: 10px;
+    width:40px;
+    height: 40px;
     background-image: url(../images/sound.png);
     background-color: black;
-    border: 1px solid wheat;
     background-size: 30px;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 50%;
 }
 .main-menu__button_sound-toggle:hover {
     opacity: 0.7;
