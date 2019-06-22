@@ -238,14 +238,20 @@ body {
 }
 .char-player .body-part {
     flex-basis: 25%;
+    transition-property: background-color, opacity;
+    transition-duration: 0.5s; 
+}
+.body-part:first-child {
+    border-radius: 15px 15px 0 0;
+}
+.body-part:last-child {
+    border-radius: 0 0 15px 15px;
 }
 .char-player .body-part:hover {
     animation-name: blink;
     animation-duration: 0.5s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    /* opacity: 0.9;
-    transition: opacity 0.5s; */
     cursor: pointer;
     background: url(../images/shield.png) no-repeat;
     background-size: contain; 
@@ -267,6 +273,8 @@ body {
     background-position: center;
     height: 100%;
     opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.5s;
 }
 /* -----------------------------BATTLE-INFO----------------------------- */
 .battle-info {
@@ -373,6 +381,8 @@ body {
 }
 .char-enemy .body-part {
     flex-basis: 25%;
+    transition-property: background-color, opacity;
+    transition-duration: 0.5s;
 }
 .char-enemy .body-part:hover {
     animation-name: blink;
@@ -400,6 +410,8 @@ body {
     background-size: contain; 
     background-position: center;
     opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.5s;
 }
 /* ---------------------------------------------------------- */
 @keyframes blink {
