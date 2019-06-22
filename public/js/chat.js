@@ -123,7 +123,7 @@ function sendMessage(textarea){
 	AJAX(sendObj)();
 }
 
-let onlineUsersList = document.querySelector('.online-users');
+let onlineUsersList = document.querySelector('.online-users__container');
 
 let getOnlineUsersObject = {
 	method: 'GET',
@@ -182,5 +182,23 @@ chatHideButton.addEventListener('click', () => {
 	chatBlock.style.opacity = 0;
 	setTimeout(() => {
 		chatBlock.style = '';
+	}, 500);
+})
+
+let onlineBlock = document.querySelector('.online-users');
+let onlineShowButton = document.querySelector('.online-users__mobile-show');
+let onlineHideButton = document.querySelector('.online-users__mobile-hide');
+
+onlineShowButton.addEventListener('click', () => {
+	onlineBlock.style.display = 'block';
+	setTimeout(() => {
+		onlineBlock.style.opacity = 1;
+	}, 0);
+})
+
+onlineHideButton.addEventListener('click', () => {
+	onlineBlock.style.opacity = 0;
+	setTimeout(() => {
+		onlineBlock.style = '';
 	}, 500);
 })

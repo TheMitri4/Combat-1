@@ -115,6 +115,31 @@
     flex-direction: column;
     align-items: center;
 }
+.main-menu__button_sound-toggle {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width:45px;
+    height: 45px;
+    background-image: url(../images/sound.png);
+    background-color: black;
+    border: 1px solid wheat;
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+.main-menu__button_sound-toggle:hover {
+    opacity: 0.7;
+}
+.sound-toggle__sound {
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/red_cross.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+}
 /* -------------------------SPINNER---------------------- */
 .spinner {
     display: flex;

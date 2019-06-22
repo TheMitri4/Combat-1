@@ -179,6 +179,7 @@ function showTurnResults(res){
 	};
 	
 	// ОТОБРАЖЕНИЕ ХОДА ПРОТИВНИКА
+
 	res.combat.results[res.combat.results.length - 1].forEach(item => {
 		if (item.origin.id === yourId) {
 			enemyBodyBlock = enemyBody[hits[item.hit]].children[0];
@@ -221,6 +222,9 @@ function showTurnResults(res){
 		playerBody.forEach(item => item.classList.remove('body-part_active'));
 		if (enemyBodyBlock) {enemyBodyBlock.classList.add('hidden');}	
 		if (enemyAttack) {enemyAttack.classList.add('hidden');}
+		enemyBody.forEach(item => item.style = "background-color: none");
+		playerBody.forEach(item => item.style = "background-color: none");
+
 		// ОБНУЛЕНИЕ ПЕРЕМЕННЫХ ДЛЯ ВЫБОРА АТАКИ
 		checkboxDefListener = 0; 
 		lastAttackIndex = null;
