@@ -85,6 +85,12 @@ onDOMReady(function(){
 	}
 
 	function validate(){
+		if(!loginInput.value.length && !passwordInput.value.length){
+			loginInput.classList.add('invalid_input');
+			passwordInput.classList.add('invalid_input');
+			return false;
+		}
+
 		if(!loginInput.value.length) {
 			loginInput.classList.add('invalid_input');
 			return false;
