@@ -19,9 +19,35 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: url(../images/mountains.jpg) center no-repeat;
-    background-size: cover;
     z-index: -1;
+}
+.layer1 {
+    background-image: url(../images/first_layer.png);
+    background-position: center;
+    background-size: cover;
+    animation-name: animatedBackground;
+    animation-duration: 1000s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.layer2 {
+    background-image: url(../images/second_layer.png);
+    background-position: center;
+    background-size: cover;
+}
+.layer3 {
+    background-image: url(../images/third_layer.png);
+    background-position: center;
+    background-size: cover;
+    animation-name: animatedBackground;
+    animation-duration: 450s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.layer4 {
+    background-image: url(../images/four_layer.png);
+    background-position: center;
+    background-size: cover;
 }
 .page {
     height: 100vh;
@@ -63,6 +89,7 @@
     justify-content: center;
 }
 .main-menu-actions {
+    position: relative;
     flex-basis: 50%;
     display: flex;
     flex-direction: column;
@@ -87,6 +114,31 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.main-menu__button_sound-toggle {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width:45px;
+    height: 45px;
+    background-image: url(../images/sound.png);
+    background-color: black;
+    border: 1px solid wheat;
+    background-size: 30px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+.main-menu__button_sound-toggle:hover {
+    opacity: 0.7;
+}
+.sound-toggle__sound {
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/red_cross.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
 }
 /* -------------------------SPINNER---------------------- */
 .spinner {
@@ -162,5 +214,14 @@
     100%{
         transform:scale(0.7);
         opacity:0.1
+    }
+}
+
+@keyframes animatedBackground {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: 20000px 0
     }
 }

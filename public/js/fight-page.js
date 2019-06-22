@@ -7,8 +7,11 @@ labelAtc = atcBox.querySelectorAll("label"),
 playerBody = document.querySelector('.char-player').querySelectorAll('.body-part'),
 enemyBody = document.querySelector('.char-enemy').querySelectorAll('.body-part');
 
-let checkboxDefListener = 0, // НУЖНО ОБНУЛЯТЬ КАЖДЫЙ ХОД
-lastAttackIndex = null;
+let enemyBodyBlock;
+let enemyAttack;
+
+let checkboxDefListener = 0; // НУЖНО ОБНУЛЯТЬ КАЖДЫЙ ХОД
+let lastAttackIndex = null;
 
 // ПАРАЛЛАКС
 function parallax(event) {
@@ -79,7 +82,7 @@ e.addEventListener('click', () => {
 // Логика боя
 
 const makeTurnButton = document.querySelector('.turn-switcher__button');
-const turnWaitWrappers = document.querySelectorAll('.battle-info__blocked');
+const turnWaitWrapper = document.querySelector('.battle-info__blocked');
 const fightResultsBlock = document.querySelector('.fight-results__wrapper');
 
 const playerHealthBar = document.querySelector('.info-player-char-hp-bar');
@@ -113,17 +116,7 @@ makeTurnButton.addEventListener('click', function(){
 	
 	this.disabled = true;
 	sendTurn(JSON.stringify(turn));
-
-	// ОБНУЛЕНИЕ ЭЛЕМЕНТОВ ВЫОРА
-    checkboxDef.forEach(item => item.checked = false);
-    checkboxAtc.forEach(item => item.checked = false);
-    playerBody.forEach(item => item.classList.remove('body-part_active'));
-    enemyBody.forEach(item => item.classList.remove('enemy-body-part_active'));
-
-	// ОБНУЛЕНИЕ ПЕРЕМЕННЫХ ДЛЯ ВЫБОРА АТАКИ
-	checkboxDefListener = 0; 
-	lastAttackIndex = null;
-})
+});
 
 function sendTurn(turn){
 	AJAX({
@@ -149,6 +142,7 @@ function sendTurn(turn){
 
 function turnHandler(res){
 	if(res.combat.status === 'finished'){
+		showTurnResults(res);
 		if(res.combat.you.health <= 0){
 			fightResultsBlock.querySelector('.fight-results__title').innerText = 'Поражение';
 			fightResultsBlock.classList.remove('hidden');
@@ -162,25 +156,80 @@ function turnHandler(res){
 				redirect('main-page')
 			});
 		}
+		return;
 	}
 	if(!res.combat.turn_status){
-		turnWaitWrappers.forEach(item => item.classList.remove('hidden'));
+		turnWaitWrapper.classList.remove('hidden');
+		turnWaitWrapper.style = "opacity:1";
 		setTimeout(() => {
 			getFightDetailsQuery(res.combat.id, turnHandler);
 		},1000);
 	}else{
+		showTurnResults(res);
+	}
+}
+
+function showTurnResults(res){
+	const yourId = res.combat.you.id;
+	const hits = {
+		head: 0,
+		body: 1,
+		belt: 2,
+		legs: 3
+	};
+	
+	// ОТОБРАЖЕНИЕ ХОДА ПРОТИВНИКА
+	setTimeout(() => {
+		res.combat.results[res.combat.results.length - 1].forEach(item => {
+			if (item.origin.id === yourId) {
+				enemyBodyBlock = enemyBody[hits[item.hit]].children[0];
+				enemyBodyBlock.style = "opacity:0.9";	
+				if (item.blocked) {
+					enemyBodyBlock.classList.remove('hidden');
+					enemyBody[hits[item.hit]].style = "background-color: rgba(0, 0, 255, 0.5)";
+				}  else {
+					enemyBody[hits[item.hit]].style = "background-color: rgba(255, 0, 0, 0.5)";
+				}
+			} else {
+				enemyAttack = playerBody[hits[item.hit]].children[0];
+				enemyAttack.classList.remove('hidden');
+				enemyAttack.style = "opacity:0.9";
+				if (item.blocked) {
+					playerBody[hits[item.hit]].style = "background-color: rgba(0, 0, 255, 0.5)";
+				} else {
+					playerBody[hits[item.hit]].style = "background-color: rgba(255, 0, 0, 0.5)";
+				}
+			}
+		});
+	}, 700);
+
+	setTimeout(() => {
+		// ОБНУЛЕНИЕ ЭЛЕМЕНТОВ ВЫОРА
+		checkboxDef.forEach(item => item.checked = false);
+		checkboxAtc.forEach(item => item.checked = false);
+		enemyBody.forEach(item => item.classList.remove('enemy-body-part_active'));
+		playerBody.forEach(item => item.classList.remove('body-part_active'));
+		if (enemyBodyBlock) {enemyBodyBlock.classList.add('hidden');}	
+		if (enemyAttack) {enemyAttack.classList.add('hidden');}
+		enemyBody.forEach(item => item.style = "background-color: none");
+		playerBody.forEach(item => item.style = "background-color: none");
+		// ОБНУЛЕНИЕ ПЕРЕМЕННЫХ ДЛЯ ВЫБОРА АТАКИ
+		checkboxDefListener = 0; 
+		lastAttackIndex = null;
+
 		makeTurnButton.disabled = false;
-		turnWaitWrappers.forEach(item => item.classList.add('hidden'));
+		turnWaitWrapper.classList.add('hidden');
+		turnWaitWrapper.children[0].innerHTML = "Ожидание противника";
 
 		const playerHealth = Math.round((res.combat.you.health / 30) * 100);
 		const enemyHealth = Math.round((res.combat.enemy.health / 30) * 100);
 
-		playerHealthBarText.innerHTML = playerHealth;
-		playerHealthBarHit.style.width = `${playerHealth}%`;
-		playerHealthBarHp.style.width = `${playerHealth}%`;
-		enemyHealthBarText.innerHTML = enemyHealth;
-		enemyHealthBarHit.style.width = `${enemyHealth}%`;
-		enemyHealthBarHp.style.width = `${enemyHealth}%`;
+		playerHealthBarText.innerText = playerHealth >= 0 ? playerHealth : 0;
+		playerHealthBarHit.style.width = `${playerHealth >= 0 ? playerHealth : 0}%`;
+		playerHealthBarHp.style.width = `${playerHealth >= 0 ? playerHealth : 0}%`;
+		enemyHealthBarText.innerText = enemyHealth >= 0 ? enemyHealth : 0;
+		enemyHealthBarHit.style.width = `${enemyHealth >= 0 ? enemyHealth : 0}%`;
+		enemyHealthBarHp.style.width = `${enemyHealth >= 0 ? enemyHealth : 0}%`;
 
 		if(res.combat.results.length != 0){
 			let turnResults = res.combat.results[res.combat.results.length - 1];
@@ -188,7 +237,7 @@ function turnHandler(res){
 				battleLogs.forEach(container => addLogItem(createLogItem(item), container));
 			})
 		}
-	}
+	},2000);
 }
 
 function getFightDetailsQuery(combatId, handler){
@@ -236,7 +285,8 @@ function setupFightPageHandler(res){
 
 	if(!res.combat.turn_status){
 		makeTurnButton.disabled = false;
-		turnWaitWrappers.forEach(item => item.classList.remove('hidden'));
+		turnWaitWrapper.classList.remove('hidden');
+		turnWaitWrapper.style = "opacity:1";
 		setTimeout(() => {
 			getFightDetailsQuery(res.combat.id, turnHandler);
 		},1000);
@@ -261,13 +311,28 @@ function createLogItem(logData){
 
 	const blockedPhrases = [
 		`<span>${logData.origin.username}</span> пытается нанести удар в ${hits[logData.hit]}, но <span>${logData.target.username}</span> успешно блокирует удар`,
-		`<span>${logData.origin.username}</span> промахивается , и <span>${logData.target.username}</span> остается цел`,
-		`<span>${logData.target.username}</span> отражает удар в ${hits[logData.hit]}`
+		`<span>${logData.origin.username}</span> промахивается , и <span>${logData.target.username}</span> остаётся цел`,
+		`<span>${logData.target.username}</span> отражает удар в ${hits[logData.hit]}`,
+		`<span>${logData.target.username}</span> легким движением руки уводит удар от <span>${logData.origin.username}</span>`,
+		`<span>${logData.target.username}</span> ловко отпрыгивает от нападающего <span>${logData.origin.username}</span> и смеётся ему в лицо`,
+		`<span>${logData.origin.username}</span> бьёт воздух вместо <span>${logData.target.username}</span>`,
+		`<span>${logData.target.username}</span> был готов и не почувствовал боли от удара в ${hits[logData.hit]}`,
+		`<span>${logData.target.username}</span> прочитал своего противника <span>${logData.origin.username}</span> как открытую книгу`,
+		`<span>${logData.origin.username}</span> перестарался и не нанёс никакого урона <span>${logData.target.username}</span>`,
+		`<span>${logData.origin.username}</span> уронил оружие, а <span>${logData.target.username}</span> остаётся цел`
 	];
 
 	const missedHitPhrases = [
 		`<span>${logData.target.username}</span> получает удар в ${hits[logData.hit]}`,
-		`<span>${logData.origin.username}</span> наносит удар в ${hits[logData.hit]} <span>${logData.target.username}</span>`
+		`<span>${logData.origin.username}</span> наносит удар в ${hits[logData.hit]} <span>${logData.target.username}</span>`,
+		`<span>${logData.origin.username}</span> своим взглядом заставил <span>${logData.target.username}</span> получить урон`,
+		`<span>${logData.origin.username}</span> случайно попадает в ${hits[logData.hit]} <span>${logData.target.username}</span>`,
+		`<span>${logData.origin.username}</span> показывая своё мастерство наносит удар в ${hits[logData.hit]}`,
+		`<span>${logData.target.username}</span> пытался предугадать действия <span>${logData.origin.username}</span> но безуспешно`,
+		`<span>${logData.target.username}</span> упускает момент и получает ранение в ${hits[logData.hit]}`,
+		`<span>${logData.target.username}</span> пережил тяжелый удар в ${hits[logData.hit]} и жаждет мести`,
+		`<span>${logData.target.username}</span> не ожидал от <span>${logData.origin.username}</span> удара в ${hits[logData.hit]}`,
+		`<span>${logData.target.username}</span> отвлёкся и пропустил удар в ${hits[logData.hit]}`
 	];
 
 	let logItem = document.createElement('p');
@@ -275,8 +340,10 @@ function createLogItem(logData){
 	
 	if(logData.blocked){
 		logItem.innerHTML = blockedPhrases[Math.round(Math.random() * (blockedPhrases.length - 1) + 0)];
+		logItem.style = "color: skyblue;"
 	}else{
 		logItem.innerHTML = missedHitPhrases[Math.round(Math.random() * (missedHitPhrases.length - 1) + 0)];
+		logItem.style = "color: crimson;";
 	}
 
 	return logItem;
@@ -290,8 +357,6 @@ function addLogItem(item, container){
 function setRandomBackground(container){
 	const backgrounds = [
 		'cave.jpg',
-		'mountains.jpg',
-		'fire.jpg',
 		'wild.jpg',
 		'darkMountains.jpg',
 		'dayMountains.jpg',

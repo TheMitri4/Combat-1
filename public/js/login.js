@@ -76,4 +76,4 @@ onDOMReady(function(){
 	
 	loginButton.onclick = loginButtonHandler;
 	registrationButton.onclick = registrationButtonHandler;
-})
+});
