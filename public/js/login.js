@@ -58,6 +58,11 @@ onDOMReady(function(){
 
 	function loginButtonHandler(event){
 		event.preventDefault();
+		
+		if(!validate()) {
+			return;
+		}
+
 		const body = {
 			username: loginInput.value,
 			password: passwordInput.value
@@ -67,11 +72,40 @@ onDOMReady(function(){
 	
 	function registrationButtonHandler(event){
 		event.preventDefault();
+		
+		if(!validate()) {
+			return;
+		}
+
 		const body = {
 			username: loginInput.value,
 			password: passwordInput.value
 		};
 		registrationQuery(body);
+	}
+
+	function validate(){
+		if(!loginInput.value.length && !passwordInput.value.length){
+			loginInput.classList.add('invalid_input');
+			passwordInput.classList.add('invalid_input');
+			return false;
+		}
+
+		if(!loginInput.value.length) {
+			loginInput.classList.add('invalid_input');
+			return false;
+		} else {
+			loginInput.classList.remove('invalid_input');
+		}
+
+		if(!passwordInput.value.length){
+			passwordInput.classList.add('invalid_input');
+			return false;
+		} else {
+			passwordInput.classList.remove('invalid_input');
+		}
+
+		return true;
 	}
 	
 	loginButton.onclick = loginButtonHandler;
