@@ -179,40 +179,48 @@ function showTurnResults(res){
 	};
 	
 	// ОТОБРАЖЕНИЕ ХОДА ПРОТИВНИКА
-	setTimeout(() => {
-		res.combat.results[res.combat.results.length - 1].forEach(item => {
-			if (item.origin.id === yourId) {
-				enemyBodyBlock = enemyBody[hits[item.hit]].children[0];
-				enemyBodyBlock.style = "opacity:0.9";	
-				if (item.blocked) {
-					enemyBodyBlock.classList.remove('hidden');
-					enemyBody[hits[item.hit]].style = "background-color: rgba(0, 0, 255, 0.5)";
-				}  else {
-					enemyBody[hits[item.hit]].style = "background-color: rgba(255, 0, 0, 0.5)";
-				}
-			} else {
-				enemyAttack = playerBody[hits[item.hit]].children[0];
-				enemyAttack.classList.remove('hidden');
-				enemyAttack.style = "opacity:0.9";
-				if (item.blocked) {
-					playerBody[hits[item.hit]].style = "background-color: rgba(0, 0, 255, 0.5)";
-				} else {
-					playerBody[hits[item.hit]].style = "background-color: rgba(255, 0, 0, 0.5)";
-				}
+	res.combat.results[res.combat.results.length - 1].forEach(item => {
+		if (item.origin.id === yourId) {
+			enemyBodyBlock = enemyBody[hits[item.hit]].children[0];
+			if (item.blocked) {
+				enemyBodyBlock.classList.remove('hidden');
+				enemyBody[hits[item.hit]].style = "background-color: rgba(0, 0, 255, 0.5)";
+			}  else {
+				enemyBody[hits[item.hit]].style = "background-color: rgba(255, 0, 0, 0.5)";
 			}
-		});
-	}, 700);
+			setTimeout(() => {
+				enemyBodyBlock.style = "opacity:0.9";
+			}, 1); 
+		} else {
+			enemyAttack = playerBody[hits[item.hit]].children[0];
+			enemyAttack.classList.remove('hidden');
+			if (item.blocked) {
+				playerBody[hits[item.hit]].style = "background-color: rgba(0, 0, 255, 0.5)";
+			} else {
+				playerBody[hits[item.hit]].style = "background-color: rgba(255, 0, 0, 0.5)";
+			}
+			setTimeout(() => {
+				enemyAttack.style = "opacity:0.9";	
+			}, 1); 
+		}
+	});
+	setTimeout(() => {
+		enemyBodyBlock.style = "opacity:0";
+		enemyAttack.style = "opacity:0";
+		enemyBody.forEach(item => item.style = "opacity:0; background-color: none");
+		playerBody.forEach(item => item.style = "opacity:0; background-color: none");
+	}, 1000);
 
 	setTimeout(() => {
 		// ОБНУЛЕНИЕ ЭЛЕМЕНТОВ ВЫОРА
 		checkboxDef.forEach(item => item.checked = false);
 		checkboxAtc.forEach(item => item.checked = false);
+		enemyBody.forEach(item => item.style = "");
+		playerBody.forEach(item => item.style = "");
 		enemyBody.forEach(item => item.classList.remove('enemy-body-part_active'));
 		playerBody.forEach(item => item.classList.remove('body-part_active'));
 		if (enemyBodyBlock) {enemyBodyBlock.classList.add('hidden');}	
 		if (enemyAttack) {enemyAttack.classList.add('hidden');}
-		enemyBody.forEach(item => item.style = "background-color: none");
-		playerBody.forEach(item => item.style = "background-color: none");
 		// ОБНУЛЕНИЕ ПЕРЕМЕННЫХ ДЛЯ ВЫБОРА АТАКИ
 		checkboxDefListener = 0; 
 		lastAttackIndex = null;
@@ -237,7 +245,7 @@ function showTurnResults(res){
 				battleLogs.forEach(container => addLogItem(createLogItem(item), container));
 			})
 		}
-	},2000);
+	},1500);
 }
 
 function getFightDetailsQuery(combatId, handler){
