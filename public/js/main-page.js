@@ -111,19 +111,3 @@ getInfoQuery();
 // getFightStatusQuery(localStorage.getItem('combat_id'));
 
 findFightButton.addEventListener('click', findFightQuery);
-
-//  --------------------АУДИО---------------------
-const audio = document.querySelector(".audio");
-const soundToggle = document.querySelector(".main-menu__button_sound-toggle");
-const soundOff = soundToggle.querySelector('.sound-toggle__sound');
-audio.volume = 0.4;
-
-soundToggle.addEventListener('click', () => {
-    if(audio.paused) {
-		audio.play();
-		soundOff.classList.add('hidden');
-	 } else {
-		audio.pause();
-		soundOff.classList.remove('hidden');
-	 }
-});
